@@ -1,0 +1,179 @@
+<!doctype html>
+<html>
+<head>
+<title> FlyOlinFly </title>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css')}}">
+<script type="text/javascript" src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>
+<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+{% macro input(name, value='', type='text', size=20) -%}
+	<input class="input" id="{{ name }}" type="{{ type }}" name="{{ name }}" 
+	value="{{ value|e }}" size="{{ size }}" 
+	onblur="if(this.value == '') { this.style.color='#999999'; this.value='{{ value|e }}'}" 
+	onfocus="if (this.value == '{{ value|e }}') {this.style.color='#000000'; this.value=''}"
+	{%- endmacro %}
+
+{% if not session.logged_in %}
+
+<h1>You have not authorized this app.</h1>
+<h1>You will be redirected OlinApps momentarily</h1>
+
+<script type="text/javascript">
+$(document).ready(function() {
+setTimeout("location.href='http://olinapps.com/external?callback=http://127.0.0.1:5000/authed'", 5000);
+});
+</script>
+	
+{% else %}
+<div id="main">
+	<span id="title" >Fly Olin Fly</span>
+	{% for message in get_flashed_messages() %}
+		<div class="flash">{{ message }} </div>
+	{% endfor %}
+	<div id="nav">
+		<a class="button" href="/close">Logout</a>
+		<a class="button" id="modent" href="javascript:void(0)" >Add or Modify Entry</a>
+	</div>
+	<form id="addnew">
+	<fieldset id="entry">
+		<legend>Arrival Details</legend>
+		<em>All fields are required</em>
+		<ol>
+			<li>
+				<label>First Name</label>
+				<input id="fname" type="text" name="fname" class="required"><br />
+			</li>
+			<li>
+				<label>Last Name</label> 
+				{{ input('lname') }} <br />	
+			</li>
+			<li>
+				<label>Phone Number</label> 
+				{{ input('phonenum', 'XXX-XXX-XXXX') }} <br />
+			</li>
+			<li>
+				<label>E-mail</label> 
+				{{ input('email', 'whatyoucheck@onbreak.com', 'email') }} <br />
+			</li>
+			<li>
+				<label>Flight</label> 
+				{{ input('flightdesc', 'Airline and Flight Number') }} <br />
+			</li>
+			<li>				
+				<label>Date</label> 
+				{{ input('date', 'MM/DD/YYYY') }} <br />			
+			</li>
+			<li>
+				<label>Time</label> 
+				{{ input('time', 'HH:MM AM/PM') }} <br />
+			</li>
+		</ol>
+	<input type="submit" value="Submit">
+	</fieldset>
+	</form>
+	<div id="list">
+		{% if entries != None %}
+		<table id="entries" border="0">
+			<thead>
+				<tr id="tabletitle">
+					<th class="date">Date</th>
+					<th class="time">Time</th>
+					<th class="name">Name</th>
+					<th class="phonenum">Phone</th>
+					<th class="flightdesc">Flight</th>	
+					<th class="email">Email</th>
+				</tr>	
+			</thead>
+			<tbody>
+				{% for entry in entries %}
+					{% if loop.index%2 == 0 %}
+					<tr id="{{entry.fname}}{{entry.lname}}" class="even link">
+					{% else %}
+					<tr id="{{entry.fname}}{{entry.lname}}" class="odd link">
+					{% endif %}
+						<td class="date">{{ entry.date }}</td>
+						<td class="time">{{ entry.time }}</td>
+						<td class="name">{{ entry.fname }} {{ entry.lname }}</td>
+						<td class="phonenum">{{ entry.phonenum }}</td>
+						<td class="flightdesc">{{ entry.flightdesc }}</td>
+						<td class="email">{{ entry.email }}</td>
+					</tr>
+					<tr class="drawer" id="{{entry.fname}}{{entry.lname}}drawer">
+					<td class="extend" id="{{entry.fname}}{{entry.lname}}extend" colspan="3"></td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		{% else %}
+		<h2> Hope you had a wonderful break! </h2>
+		{% endif %}
+		</div>
+	</div>
+<script type="text/javascript" >
+	
+$(document).ready(function() {
+window.location.hash= "{{user}}"
+$("#entry").hide()
+$(".flash").delay('5000').fadeOut('200')
+responsive()
+});
+
+$(window).resize(responsive)
+
+function responsive() {
+winwidth = $(window).width()
+
+if (winwidth >= 900) {
+	$(".more").hide()
+	$(".drawer").hide()
+	$(".extend").hide()
+	$(".phonenum").show()
+	$(".flightdesc").show()
+	$(".email").show()
+}
+
+else {
+	$(".more").show()
+	$(".drawer").hide()
+	$(".extend").hide()
+	$(".phonenum").hide()
+	$(".flightdesc").hide()
+	$(".email").hide()
+	$("table td").css("width", "150")
+	$(".link").click(function () {
+		$(".drawer").hide()
+		$(".extend").hide()
+		item = $(this).attr('id')
+		$("#"+item+"extend").empty()
+		$("#"+item+"drawer").show()
+		$("#"+item+"extend").show()
+		phonenum = $("#" + item +" .phonenum").html()
+		flightdesc = $("#" +item +" .flightdesc").html()
+		email = $("#" + item + ".email").html()
+		$("#"+item+"extend").append("<div id='extra'><b>Phone Number:</b> " + phonenum +"<br /> <b>Flight:</b> " + flightdesc + "<br /> <b>E-mail:</b> " + email + "</div>")
+	});
+}
+}
+
+$(".extend").click(function() {
+	$(".drawer").hide()
+	$(".extend").hide()
+	$("#extra").fadeOut('1200')
+});
+
+
+$("#{{user}}").removeAttr('class').addClass("link").css("background-color", "#f38630")
+
+$("#modent").click(function(){
+	$("#entry").fadeIn('800')
+});
+
+</script>
+{% endif %}
+
+
+</body>
+</html>

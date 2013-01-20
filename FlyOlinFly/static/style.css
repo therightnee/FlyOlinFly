@@ -1,0 +1,115 @@
+html{ 
+font-family: Helvetica,sans-serif; 
+background: #eee; 
+}
+
+body{
+min-width: 480px;
+margin: 0px;
+}
+
+.flash{ 
+background: #CEE5F5; 
+padding: 0.5em;
+border: 1px solid #aacbe2; 
+font-weight: bold;
+width: 100%;
+}
+
+#title{
+font-family: 'Lobster', cursive;
+font-size: 50px;
+margin-left: 15px;
+}
+
+#nav {
+margin: 20px 0px;
+}
+
+.button {
+color: #000000;
+text-decoration: none;
+margin: 10px;
+padding: 5px;
+background-color: #a7d8a0;
+font-family: 'Lobster', cursive;
+font-size: 22px;
+}
+
+.button a{
+color: #ffffff;
+}
+
+.button a:visited {
+color: #ffffff;
+}
+
+#entry {
+	margin-bottom: 10px;
+}
+#entry legend {
+	padding: 0 2px;
+	font-weight: bold;
+}
+#entry label {
+	display: inline-block;
+	line-height: 1.8;
+	vertical-align: top;
+}
+#entry fieldset ol {
+	margin: 0;
+	padding: 0;
+}
+#entry fieldset li {
+	list-style: none;
+	padding: 5px;
+	margin: 0;
+}
+#entry label {
+  width: 120px; /* Width of labels */
+}
+
+#entry label {
+  margin-right: 20px; /* Width plus 3 (html space) */
+}
+
+#list{
+margin-top: 25px;
+}
+
+table{
+border-collapse: collapse;
+border-spacing: 0px;
+margin: auto;
+}
+
+table th{
+width: 200px;
+text-align: left;
+background-color: #ccc281;
+padding: 5px;
+}
+
+table td{
+padding:5px;
+text-align: left;
+}
+
+.input{
+color: #999999;	
+}
+
+#entries tbody tr.odd td{
+background-color: #e0e4cc;
+}
+
+#entries tbody tr.even td {
+background-color: #a7dbd8;
+}
+
+#extra{
+text-align: left;
+padding: 10px;
+background-color: #cccccc;
+border-radius: 10px;
+}

@@ -1,0 +1,37 @@
+from FlyOlinFly import app
+from FlyOlinFly.models import Entry
+from FlyOlinFly.database import init_db, db_session
+from flask import Flask, request, session, g, redirect, url_for, \
+	abort, render_template, flash 
+from datetime import datetime
+
+@app.route('/')
+def landing():
+	cur = db_session.execute('select fname, lname, phonenum, email, flightdesc, datetime from entry order by datetime')
+	entries = [dict(fname=row[0], lname=row[1], phonenum=row[2], email=row[3], flightdesc=row[4], date=datetime.strftime(row[5], "%m/%d/%Y") time=datetime.strftime(row[5], "%H:%M") for row in cur.fetchall()]
+	return render_template('main.html', entries=entries)
+
+@app.route('/add', methods=['POST'])
+def add_newentry():
+	fname = request.form['fname']
+	lname = request.form['lname']
+	phonenum = request.form['phonenum']
+	email = request.form['email']
+	flightdesc = request.form['flightdesc']
+	date = request.form['date']
+	time = request.form['time']
+	
+	###parse the date and time data to fit a python datetime object###
+	
+	datetime1 = datetime.strptime(date + " " + time, "%m/%d/%Y %H:%M")
+
+	newentry= Entry(fname, lname, phonenum, email, flightdesc, datetime1)
+	db_session.add(newentry)
+	print(Entry.query.all())
+	try:
+		db_session.commit()
+	except:
+		flash("You've been here before.")
+	return redirect(url_for('landing'))
+
+
