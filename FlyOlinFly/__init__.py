@@ -8,7 +8,6 @@ FLASKR_SETTINGS = ''
 # create our little application :)
 app = Flask(__name__)
 app.config.from_object(__name__)
-#app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
 
 from FlyOlinFly.database import init_db, db_session

@@ -4,7 +4,6 @@
 <title> FlyOlinFly </title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css')}}">
-<script type="text/javascript" src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>
 <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 </head>
 <body>
@@ -18,8 +17,8 @@
 
 {% if not session.logged_in %}
 
-<h1>You have not authorized this app.</h1>
-<h1>You will be redirected OlinApps momentarily</h1>
+<span class="title">You have not authorized this app.</span> <br /><br />
+<span class="title">Redirecting to OlinApps.</span>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -29,7 +28,7 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://127.0.0.
 	
 {% else %}
 <div id="main">
-	<span id="title" >Fly Olin Fly</span>
+	<span class="title" >Fly Olin Fly</span>
 	{% for message in get_flashed_messages() %}
 		<div class="flash">{{ message }} </div>
 	{% endfor %}
@@ -37,14 +36,14 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://127.0.0.
 		<a class="button" href="/close">Logout</a>
 		<a class="button" id="modent" href="javascript:void(0)" >Add or Modify Entry</a>
 	</div>
-	<form id="addnew">
+	 <form action="{{ url_for('add_newentry') }}" method=post>
 	<fieldset id="entry">
 		<legend>Arrival Details</legend>
 		<em>All fields are required</em>
 		<ol>
 			<li>
 				<label>First Name</label>
-				<input id="fname" type="text" name="fname" class="required"><br />
+				<input id="fname" type="text" name="fname" ><br />
 			</li>
 			<li>
 				<label>Last Name</label> 
@@ -152,7 +151,7 @@ else {
 		$("#"+item+"extend").show()
 		phonenum = $("#" + item +" .phonenum").html()
 		flightdesc = $("#" +item +" .flightdesc").html()
-		email = $("#" + item + ".email").html()
+		email = $("#" + item + " .email").html()
 		$("#"+item+"extend").append("<div id='extra'><b>Phone Number:</b> " + phonenum +"<br /> <b>Flight:</b> " + flightdesc + "<br /> <b>E-mail:</b> " + email + "</div>")
 	});
 }

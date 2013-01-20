@@ -1,6 +1,7 @@
 from FlyOlinFly import app
 from FlyOlinFly.models import Entry
 from FlyOlinFly.database import init_db, db_session
+from sqlalchemy.exc import IntegrityError
 from flask import Flask, request, session, g, redirect, url_for, \
 	abort, render_template, flash 
 from datetime import datetime
@@ -87,6 +88,7 @@ def add_newentry():
 		userdata = session.get('userdata')
 		user = userdata['user']
 		
+		
 		###ACTUAL UNIQUE SET IS HERE
 		#unique = user['id']
 		
@@ -97,33 +99,71 @@ def add_newentry():
 		#parsed = session.get('idDB')
 		
 		
-		###parse the date and time data to fit a python datetime object###
-	
-		datetime1 = datetime.strptime(date + " " + time, "%m/%d/%Y %I:%M %p")
-		
 		###WARNING: USERS MUST NOT ADD ENTRIES FOR ANYONE BUT THEMSELVES
 		#this is not an ideal solution, and when I can get PUT access
 		#things can be fixed. Until then - 
 		
-		#checkexist = Entry.query.filter_by(unique=user['id']).first()
-		checkexist = None
-		
-		if checkexist == None:
-			newentry= Entry(fname, lname, phonenum, email, flightdesc, datetime1, unique)
-			db_session.add(newentry)
-			flash('You have added an entry')
-			flash(unique)
-		else:
-			checkexist.fname = fname
-			checkexist.lname = lname
-			checkexist.phonenum = phonenum
-			checkexist.email = email
-			checkexist.flightdesc = flightdesc
-			checkexist.datetime = datetime1
-			flash('You have modified your entry')
-		
-		db_session.commit()
-		
 		session['tracker'] += 1
 		
-		return redirect(url_for('content'))
+		#quick and dirty form validation
+		namecheck = 0
+		phonecheck = 0
+		emailcheck = 0
+		flightcheck = 0
+		datetimecheck = 1
+		
+		if len(fname) != 0 and len(lname) != 0:
+			namecheck = 1
+		if len(phonenum) == 12:
+			phonecheck = 1
+		if len(email.split('@')) == 2:
+			emailcheck = 1
+		if len(flightdesc) !=0:
+			flightcheck = 1
+			
+		###parse the date and time data to fit a python datetime object###
+		try:
+			datetime1 = datetime.strptime(date + " " + time, "%m/%d/%Y %I:%M %p")
+		except:
+			datetimecheck = 0
+			
+		sum = namecheck + phonecheck + emailcheck + flightcheck + datetimecheck
+		if sum == 5:
+			checkexist = Entry.query.filter_by(unique=user['id']).first()
+			#checkexist = None
+			if checkexist == None:
+				try:
+					newentry= Entry(fname, lname, phonenum, email, flightdesc, datetime1, unique)
+					db_session.add(newentry)
+					db_session.commit()		
+					flash('You have added an entry')
+					flash(unique)
+				except IntegrityError, e:
+					key = e.message.split('key')[1].split("'")[1]
+					translate = {'phonenum': 'phone number', 'email': 'e-mail'}
+					flash('Someone has the same ' + translate[key] + ' as you. Please contact an administrator.')
+			else:
+				checkexist.fname = fname
+				checkexist.lname = lname
+				checkexist.phonenum = phonenum
+				checkexist.email = email
+				checkexist.flightdesc = flightdesc
+				checkexist.datetime = datetime1
+				db_session.add(checkexist)
+				db_session.commit()	
+				flash('You have modified your entry')
+		
+		
+			return redirect(url_for('content'))
+			
+		else:
+			if namecheck == 0:
+				fix = "name"
+			if phonecheck == 0:
+				fix = "phone number"
+			if emailcheck == 0:
+				fix = "email"
+			if datetimecheck == 1:
+				fix = "arrival date and time"
+			flash('Your form has failed to validate. Please check that your' + fix + 'is correct.')
+			return redirect(url_for('content'))
