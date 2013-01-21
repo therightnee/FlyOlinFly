@@ -84,12 +84,10 @@ def add_newentry():
 		
 		###THIS IS TEMPORARY
 		unique = request.form['email'].split('@')[0]
-			
+				
+		###ACTUAL UNIQUE SET IS HERE
 		userdata = session.get('userdata')
 		user = userdata['user']
-		
-		
-		###ACTUAL UNIQUE SET IS HERE
 		#unique = user['id']
 		
 		###This is to grab the OlinDirectory ID 
