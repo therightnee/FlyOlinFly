@@ -101,18 +101,19 @@ def add_newentry():
 		#quick and dirty form validation
 		namecheck = 0
 		phonecheck = 0
-		emailcheck = 0
-		flightcheck = 0
+		emailcheck = 1
+		flightcheck = 1
 		datetimecheck = 1
+		esplit = email.split('@')
 		
 		if len(fname) != 0 and len(lname) != 0:
 			namecheck = 1
-		if len(phonenum) == 12:
+		if len(phonenum) == 12 and phonenum.split('-')[0] != "XXX":
 			phonecheck = 1
-		if len(email.split('@')) == 2:
-			emailcheck = 1
-		if len(flightdesc) !=0:
-			flightcheck = 1
+		if esplit[1] == "onbreak.com" :
+			emailcheck = 0
+		if flightdesc == "Airline and Flight Number":
+			flightcheck = 0
 			
 		###parse the date and time data to fit a python datetime object###
 		try:
@@ -149,14 +150,33 @@ def add_newentry():
 			return redirect(url_for('content'))
 			
 		else:
-			fix = ""
+			fix = list()
+			fixthis = str()
+			
 			if namecheck == 0:
-				fix = fix + "name"
+				fix.append("name")
 			if phonecheck == 0:
-				fix = fix + "phone number"
+				fix.append("phone number")
 			if emailcheck == 0:
-				fix = fix + "email"
-			if datetimecheck == 1:
-				fix = fix + "arrival date and time"
-			flash('Your form has failed to validate. Please check that your ' + fix + ' is correct.')
+				fix.append("email")
+			if flightcheck == 0:
+				fix.append("flight description")
+			if datetimecheck == 0:
+				fix.append("arrival date and time")
+			
+			if len(fix) > 2:
+				last = fix[-1]
+				for i in fix:
+					if i == last:
+						fixthis = fixthis + " and " + i
+					else:
+						fixthis = fixthis + " " + i + ","
+			elif len(fix) == 2:
+				fixthis = fix[0] + " and " + fix[1]
+				flash('Your form has failed to validate. Please check that your ' + fixthis + ' are both correct.')
+			else:
+				fixthis = fix[0]
+				flash('Your form has failed to validate. Please check that your ' + fixthis + ' is correct.')
+			
+			flash('Your form has failed to validate. Please check that your ' + fixthis + ' are all correct.')
 			return redirect(url_for('content'))

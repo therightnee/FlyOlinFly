@@ -3,7 +3,10 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 import os
 
-postgresurl = os.environ['DATABASE_URL']
+try:
+	postgresurl = os.environ['DATABASE_URL']
+except:
+	postgresurl = 'postgresql://postgres:love12@localhost/test'
 engine = create_engine(postgresurl, convert_unicode=True)
 db_session = scoped_session(sessionmaker(autocommit=False,
                                          autoflush=False,
