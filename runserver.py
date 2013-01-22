@@ -1,2 +1,4 @@
 from FlyOlinFly import app
-app.run(debug=True)
+import os
+
+app.run(port=os.environ.get("PORT", 5000), debug=False)

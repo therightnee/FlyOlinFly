@@ -3,7 +3,6 @@ from flask import Flask \
 
 #set variables
 SECRET_KEY = "development_key"
-FLASKR_SETTINGS = ''
 
 # create our little application :)
 app = Flask(__name__)
