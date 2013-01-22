@@ -80,27 +80,22 @@ def add_newentry():
 		flightdesc = request.form['flightdesc']
 		date = request.form['date']
 		time = request.form['time']
+
+		###WARNING: USERS MUST NOT ADD ENTRIES FOR ANYONE BUT THEMSELVES
+		#this is not an ideal solution, and when I can get PUT access
+		#things can be fixed. Until then - 
 		
-		
-		###THIS IS TEMPORARY
-		unique = request.form['email'].split('@')[0]
-				
-		###ACTUAL UNIQUE SET IS HERE
+		###UNIQUE IS SET HERE
 		userdata = session.get('userdata')
 		user = userdata['user']
-		#unique = user['id']
+		unique = user['id']
 		
 		###This is to grab the OlinDirectory ID 
 		###The following code is for use in a later version	
 		#name = user['id'].split('.')
 		#username = name[0].title() + " " + name[1].title()
 		#parsed = session.get('idDB')
-		
-		
-		###WARNING: USERS MUST NOT ADD ENTRIES FOR ANYONE BUT THEMSELVES
-		#this is not an ideal solution, and when I can get PUT access
-		#things can be fixed. Until then - 
-		
+
 		session['tracker'] += 1
 		
 		#quick and dirty form validation
@@ -135,7 +130,6 @@ def add_newentry():
 					db_session.add(newentry)
 					db_session.commit()		
 					flash('You have added an entry')
-					flash(unique)
 				except IntegrityError, e:
 					key = e.message.split('key')[1].split("'")[1]
 					translate = {'phonenum': 'phone number', 'email': 'e-mail'}
@@ -155,13 +149,14 @@ def add_newentry():
 			return redirect(url_for('content'))
 			
 		else:
+			fix = ""
 			if namecheck == 0:
 				fix = "name"
 			if phonecheck == 0:
-				fix = "phone number"
+				fix = fix + "phone number"
 			if emailcheck == 0:
-				fix = "email"
+				fix = fix + "email"
 			if datetimecheck == 1:
-				fix = "arrival date and time"
-			flash('Your form has failed to validate. Please check that your' + fix + 'is correct.')
+				fix = fix + "arrival date and time"
+			flash('Your form has failed to validate. Please check that your ' + fix + ' is correct.')
 			return redirect(url_for('content'))

@@ -17,12 +17,12 @@
 
 {% if not session.logged_in %}
 
-<span class="title">You have not authorized this app.</span> <br /><br />
-<span class="title">Redirecting to OlinApps.</span>
+<span class="redirect">You have not authorized this app.</span> <br /><br />
+<span class="redirect">Redirecting to OlinApps.</span>
 
 <script type="text/javascript">
 $(document).ready(function() {
-setTimeout("location.href='http://olinapps.com/external?callback=http://127.0.0.1:5000/authed'", 5000);
+setTimeout("location.href='http://olinapps.com/external?callback=http://flyolinfly.herokuapp.com/authed'", 5000);
 });
 </script>
 	
