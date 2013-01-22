@@ -125,14 +125,13 @@ $(window).resize(responsive)
 function responsive() {
 winwidth =  document.documentElement.clientWidth
 
-if (winwidth >= 900) {
+if (winwidth >= 1000) {
 	$(".more").hide()
 	$(".drawer").hide()
 	$(".extend").hide()
 	$(".phonenum").show()
 	$(".flightdesc").show()
 	$(".email").show()
-	document.write(winwidth)
 }
 
 else {
