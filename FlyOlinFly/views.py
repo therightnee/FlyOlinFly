@@ -151,7 +151,7 @@ def add_newentry():
 		else:
 			fix = ""
 			if namecheck == 0:
-				fix = "name"
+				fix = fix + "name"
 			if phonecheck == 0:
 				fix = fix + "phone number"
 			if emailcheck == 0:
