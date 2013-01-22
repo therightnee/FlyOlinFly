@@ -12,7 +12,7 @@ margin: 0px;
 background: #CEE5F5; 
 padding: 0.5em;
 border: 1px solid #aacbe2; 
-font-weight: bold;
+font-family: Georgia, serif;
 width: 100%;
 }
 
@@ -33,6 +33,7 @@ margin: 15px;
 padding: 5px;
 background-color: #a7d8a0;
 font-family: Georgia, serif;
+font-weight: bold;
 font-size: 14px;
 }
 
