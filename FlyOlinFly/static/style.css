@@ -22,6 +22,12 @@ font-size: 50px;
 margin-left: 15px;
 }
 
+.redirect{
+font-family: Georgia, serif;
+font-size: 50px;
+margin-left: 15px;
+}
+
 #nav {
 margin: 20px 0px;
 }
@@ -87,7 +93,7 @@ margin: auto;
 }
 
 table th{
-width: 200px;
+width: 250px;
 text-align: left;
 background-color: #ccc281;
 padding: 5px;
