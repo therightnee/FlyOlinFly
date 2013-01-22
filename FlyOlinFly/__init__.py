@@ -4,6 +4,7 @@ from flask import Flask \
 #set variables
 SECRET_KEY = "development_key"
 
+
 # create our little application :)
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -19,4 +20,4 @@ def shutdown_session(exception=None):
 
 if __name__ == '__main__':
     init.db()
-    app.run()
+    app.run(host='0.0.0.0',port=port,debug=True)
