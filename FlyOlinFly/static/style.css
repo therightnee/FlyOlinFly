@@ -10,7 +10,8 @@ margin: 10px;
 
 .flash{ 
 background: #CEE5F5; 
-padding: 0.5em 10px;
+padding: 0.5em;
+margin-top: 25px;
 border: 1px solid #aacbe2; 
 font-family: Georgia, serif;
 }
@@ -21,7 +22,7 @@ font-size: 50px;
 margin-left: 15px;
 }
 
-.redirect{
+#redirect{
 font-family: Georgia, serif;
 font-size: 34px;
 margin-left: 15px;

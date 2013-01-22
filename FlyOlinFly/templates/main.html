@@ -17,8 +17,10 @@
 
 {% if not session.logged_in %}
 
-<span class="redirect">You have not authorized this app.</span> <br /><br />
-<span class="redirect">Redirecting to OlinApps...</span>
+<span id="redirect"> 
+Please authorize this app. <br /> 
+Redirecting to OlinApps...
+</span>
 
 <script type="text/javascript">
 $(document).ready(function() {
