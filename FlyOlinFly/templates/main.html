@@ -6,6 +6,7 @@
 <script src="http://code.jquery.com/ui/jquery-ui-git.js"></script>
 <script src="{{ url_for('static', filename='jgestures.min.js')}}"></script>
 <script src="{{ url_for('static', filename='jquery.timepicker.min.js')}}"></script>
+<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/jquery-ui-git.css">
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css')}}">
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='jquery.timepicker.css')}}">
 <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
@@ -169,7 +170,9 @@ else {
 	$(".link").css("cursor", "pointer")
 	$(".link").click(drawer)
 	$(".link").bind("tapone", drawer)	
-	$(body).append("<h1 class='add'> Tap an entry to get more information.</h1>")
+	if ($("#add").length() == 0) {
+		$("body").append("<h1 class='add'> Tap an entry to get more information.</h1>")
+	}
 }
 }
 
