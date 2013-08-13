@@ -51,7 +51,7 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://flyolinf
 		<ol>
 			<li>
 				<label>First Name</label>
-				<input id="fname" type="text" name="fname" value="Frank"><br />
+				{{ input('fname', 'Frank') }}<br />
 			</li>
 			<li>
 				<label>Last Name</label> 
@@ -71,11 +71,11 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://flyolinf
 			</li>
 			<li>				
 				<label>Date</label> 
-				<input type="text" id="datepicker" value="MM/DD/YYYY"/> <br />			
+				{{ input('datepicker', 'MM/DD/YYYY') }} <br />			
 			</li>
 			<li>
 				<label>Time</label> 
-				<input type="text" id="timepicker" value="HH:MMAM/PM"/> <br />
+				{{ input('timepicker', 'HH:MMam/pm') }} <br />
 			</li>
 		</ol>
 	<input type="submit" value="Submit">
@@ -174,7 +174,7 @@ else {
 	$(".link").bind("tapone", drawer)	
 	$("#datepicker").attr("type", "date")
 	$("#timepicker").attr("type", "time")
-	if ($("#add").length() == 0) {
+	if ($(".add").length() == 0) {
 		$("body").append("<h1 class='add'> Tap an entry to get more information.</h1>")
 	}
 }
