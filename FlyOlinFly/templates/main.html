@@ -51,15 +51,15 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://flyolinf
 		<ol>
 			<li>
 				<label>First Name</label>
-				<input id="fname" type="text" name="fname" ><br />
+				<input id="fname" type="text" name="fname" value="Frank"><br />
 			</li>
 			<li>
 				<label>Last Name</label> 
-				{{ input('lname') }} <br />	
+				{{ input('lname', 'Olin') }} <br />	
 			</li>
 			<li>
 				<label>Phone Number</label> 
-				{{ input('phonenum', 'XXX-XXX-XXXX') }} <br />
+				{{ input('phonenum', 'XXX-XXX-XXXX', 'tel') }} <br />
 			</li>
 			<li>
 				<label>E-mail</label> 
@@ -71,11 +71,11 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://flyolinf
 			</li>
 			<li>				
 				<label>Date</label> 
-				<input type="date" id="datepicker" value="MM/DD/YYYY"/> <br />			
+				<input type="text" id="datepicker" value="MM/DD/YYYY"/> <br />			
 			</li>
 			<li>
 				<label>Time</label> 
-				<input type="time" id="timepicker" value="HH:MMAM/PM"/> <br />
+				<input type="text" id="timepicker" value="HH:MMAM/PM"/> <br />
 			</li>
 		</ol>
 	<input type="submit" value="Submit">
@@ -158,6 +158,8 @@ if (winwidth >= 1000) {
 	$(".flightdesc").show()
 	$(".email").show()
 	$(".add").remove()
+	$("#datepicker").attr("type", "text")
+	$("#timepicker").attr("type", "text")
 }
 
 else {
@@ -170,6 +172,8 @@ else {
 	$(".link").css("cursor", "pointer")
 	$(".link").click(drawer)
 	$(".link").bind("tapone", drawer)	
+	$("#datepicker").attr("type", "date")
+	$("#timepicker").attr("type", "time")
 	if ($("#add").length() == 0) {
 		$("body").append("<h1 class='add'> Tap an entry to get more information.</h1>")
 	}
