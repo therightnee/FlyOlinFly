@@ -84,20 +84,20 @@ color: #ffffff;
 margin-top: 25px;
 }
 
-table{
+#entries{
 border-collapse: collapse;
 border-spacing: 0px;
 margin: auto;
 }
 
-table th{
+#tabletitle th{
 width: 200px;
 text-align: left;
 background-color: #ccc281;
 padding: 5px;
 }
 
-table td{
+#entries td{
 padding:5px;
 text-align: left;
 }
