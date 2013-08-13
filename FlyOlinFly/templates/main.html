@@ -149,33 +149,33 @@ $('#timepicker').timepicker({
 $(window).resize(responsive)
 
 function responsive() {
-winwidth =  document.documentElement.clientWidth
+	winwidth =  document.documentElement.clientWidth
 
-if (winwidth >= 1000) {
-	$(".drawer").hide()
-	$(".extend").hide()
-	$(".phonenum").show()
-	$(".flightdesc").show()
-	$(".email").show()
-	$(".add").remove()
-	$("#datepicker").attr("type", "text")
-	$("#timepicker").attr("type", "text")
-}
+	if (winwidth >= 1000) {
+		$(".drawer").hide()
+		$(".extend").hide()
+		$(".phonenum").show()
+		$(".flightdesc").show()
+		$(".email").show()
+		$(".add").remove()
+		$("#datepicker").attr("type", "text")
+		$("#timepicker").attr("type", "text")
+	}
 
-else {
-	$(".drawer").hide()
-	$(".extend").hide()
-	$(".phonenum").hide()
-	$(".flightdesc").hide()
-	$(".email").hide()
-	$("table td").css("width", "150")
-	$(".link").css("cursor", "pointer")
-	$(".link").click(drawer)
-	$(".link").bind("tapone", drawer)	
-	$("#datepicker").attr("type", "date")
-	$("#timepicker").attr("type", "time")
-		$("body").append("<h1 class='add'> Tap an entry to get more information.</h1>")
-}
+	else {
+		$(".drawer").hide()
+		$(".extend").hide()
+		$(".phonenum").hide()
+		$(".flightdesc").hide()
+		$(".email").hide()
+		$("table td").css("width", "150")
+		$(".link").css("cursor", "pointer")
+		$(".link").click(drawer)
+		$(".link").bind("tapone", drawer)	
+		$("#datepicker").attr("type", "date")
+		$("#timepicker").attr("type", "time")
+		$(".list").prepend("<h1>Tap an entry to see details.</h1>")
+	}
 }
 
 function drawer() {
