@@ -2,7 +2,8 @@
 <html>
 <head>
 <title> FlyOlinFly </title>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css')}}">
 <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 </head>
@@ -129,47 +130,58 @@ function responsive() {
 winwidth =  document.documentElement.clientWidth
 
 if (winwidth >= 1000) {
-	$(".more").hide()
+	//$(".more").hide()
 	$(".drawer").hide()
 	$(".extend").hide()
 	$(".phonenum").show()
 	$(".flightdesc").show()
 	$(".email").show()
 	$(".link").click(function () {
-		$(".more").hide()
+		//$(".more").hide()
 		$(".drawer").hide()
 	});
 }
 
 else {
-	$(".more").show()
+	//$(".more").show()
 	$(".drawer").hide()
 	$(".extend").hide()
 	$(".phonenum").hide()
 	$(".flightdesc").hide()
 	$(".email").hide()
 	$("table td").css("width", "150")
-	$(".link").click(function () {
-		$(".drawer").hide()
-		$(".extend").hide()
-		item = $(this).attr('id')
-		$("#"+item+"extend").empty()
-		$("#"+item+"drawer").show()
-		$("#"+item+"extend").show()
-		phonenum = $("#" + item +" .phonenum").html()
-		flightdesc = $("#" +item +" .flightdesc").html()
-		email = $("#" + item + " .email").html()
-		$("#"+item+"extend").append("<div id='extra'><b>Phone Number:</b> " + phonenum +"<br /> <b>Flight:</b> " + flightdesc + "<br /> <b>E-mail:</b> " + email + "</div>")
-	});
+	$(".link").click(drawer)
+	$(".link").bind("tap", drawer)	
+	$(".name").append("{+}")
 }
 }
 
-$(".extend").click(function() {
+function drawer() {
+	$(".drawer").hide()
+	$(".extend").hide()
+	item = $(this).attr('id')
+	$("#"+item+"extend").empty()
+	$("#"+item+"drawer").show()
+	$("#"+item+"extend").show()
+	phonenum = $("#" + item +" .phonenum").html()
+	flightdesc = $("#" +item +" .flightdesc").html()
+	email = $("#" + item + " .email").html()
+	$("#"+item+"extend").append(
+		"<div id='extra'><b>Phone Number:</b> " + phonenum +
+		"<br /> <b>Flight:</b> " + flightdesc + 
+		"<br /> <b>E-mail:</b> " + email + 
+		"<br /><br /><b>Tap anywhere in this box to close.</b>" +
+		"</div>")
+};
+
+function close() {
 	$(".drawer").hide()
 	$(".extend").hide()
 	$("#extra").fadeOut('1200')
-});
+};
 
+$(".extend").bind("tap", close);
+$(".extend").click(close);
 
 $("#{{user}}").removeAttr('class').addClass("link").css("background-color", "#f38630")
 
