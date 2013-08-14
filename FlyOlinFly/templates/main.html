@@ -60,7 +60,7 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://flyolinf
 			</li>
 			<li>
 				<label id="phonenumlabel">Phone Number</label> 
-				{{ input('phonenum', 'XXXXXXXXXX', 'tel') }} <br />
+				{{ input('phonenum', 'XXX-XXX-XXXX', 'number') }} <br />
 			</li>
 			<li>
 				<label id="emaillable">E-mail</label> 
@@ -121,24 +121,6 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://flyolinf
 		</div>
 	</div>
 <script type="text/javascript" >
-
-$('#mainform').submit(function() {
-	var num=document.forms["mainform"]["phonenum"].value;
-	if (num.length == 10){
-	  num_array = num.split()
-	  num_fix1 = num.splice(3,0,"-")
-	  num_fix2 = num.splice(7,0,"-")
-	  $('input[name="phonenum"]').val(num_fix2); 
-	  $("#list").prepend(num_fix2)
-	  return false
-	  }
-	else{
-		$("#phonenumlabel").css("color", "red")
-		$("#list").prepend("<span id='add'>Please check your phone number.</span>")
-		return false
-	}
-});
-
 
 $(window).resize(responsive)
 
