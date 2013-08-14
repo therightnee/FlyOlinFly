@@ -60,7 +60,7 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://flyolinf
 			</li>
 			<li>
 				<label id="phonenumlabel">Phone Number</label> 
-				{{ input('phonenum', 'XXX-XXX-XXXX', 'number') }} <br />
+				{{ input('phonenum', 'XXX-XXX-XXXX', 'tel') }} <br />
 			</li>
 			<li>
 				<label id="emaillable">E-mail</label> 
@@ -179,7 +179,7 @@ function drawer() {
 		"<div id='extra'><b>Phone Number:</b> " + phonenum +
 		"<br /> <b>Flight:</b> " + flightdesc + 
 		"<br /> <b>E-mail:</b> " + email + 
-		"<br /><br /><b>Tap anywhere in this box to close.</b>" +
+		"<br /><br /><b>Tap anywhere in this box to close or tap another entry.</b>" +
 		"</div>")
 };
 
