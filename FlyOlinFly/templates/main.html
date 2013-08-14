@@ -45,7 +45,7 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://flyolinf
 		<a class="button" href="/close">Logout</a>
 		<a class="button" id="modent" href="javascript:void(0)" >Add or Modify Entry</a>
 	</div>
-	 <form name="mainform" onsubmit="return validate()" action="{{ url_for('add_newentry') }}" method=post>
+	 <form name="mainform" action="{{ url_for('add_newentry') }}" method=post>
 	<fieldset id="entry">
 		<legend>Arrival Details</legend>
 		<em>All fields are required</em>
@@ -121,67 +121,6 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://flyolinf
 		</div>
 	</div>
 <script type="text/javascript" >
-
-function validate() {
-//get all the data
-var fname = document.forms["mainform"]["fname"].value;
-var lname = document.forms["mainform"]["lname"].value;
-var email = document.forms["mainform"]["phonenum"].value;
-var phonenum = document.forms["mainform"]["email"].value;
-var flightdesc = document.forms["mainform"]["flightdesc"].value;
-var date = document.forms["mainform"]["date"].value;
-var time = document.forms["mainform"]["time"].value;
-
-//process the data
-var atpos=email.indexOf("@");
-var dotpos=email.lastIndexOf(".");
-
-//check to see if the fname is empty
-if (fname==null || fname=="") {
-  return false;
-  }
-//check to see if the lname is empty
-else if (lname==null || lname=="") {
-  return false;
-  }
-//check to see if the e-mail is valid
-else if (atpos<1 || dotpos<atpos+2 || dotpos+2>=email.length) {
-  return false;
-  }
-//check to see if the phonenum is of the right length
-else if(phonenum.length != 13) { 
-  return false
-  } 
-//check to see if the flight description is not empty
-else if (flighdesc==null || flightdesc=="") {
-  return false;
-  }
-//check to see if the date is not empty 
-//ideally should be replaced with a regex matcher but server side validation will 
-//check the format
-else if (date==null || date=="") {
-  return false;
-  }
-//check to see if the time is not empty 
-//ideally should be replaced with a regex matcher but server side validation will 
-//check the format
-else if (time==null || time=="") {
-  return false;
-  }
-
- else {
- 	return true;
- }
-
-};
-	
-$(document).ready(function() {
-window.location.hash= "{{user}}"
-$("#entry").hide()
-$(".flash").delay('5000').fadeOut('200')
-responsive()
-});
-
 $(window).resize(responsive)
 
 function responsive() {
@@ -213,7 +152,8 @@ function responsive() {
 		$("table td").css("width", "150")
 		$(".link").css("cursor", "pointer")
 		$(".link").click(drawer)
-		$(".link").bind("tapone", drawer)	
+		$(".link").bind("tapone", drawer)
+		$("#phonenum").attr("type", "text")	
 		$("#datepicker").attr("type", "date")
 		$("#timepicker").attr("type", "time")
 		if ($("#add").length == 0) {
@@ -255,6 +195,13 @@ $("#modent").click(function(){
 	$("#entry").fadeIn('800')
 });
 
+	
+$(document).ready(function() {
+window.location.hash= "{{user}}"
+$("#entry").hide()
+$(".flash").delay('5000').fadeOut('200')
+responsive()
+});
 </script>
 {% endif %}
 
