@@ -84,6 +84,12 @@ color: #ffffff;
 margin-top: 25px;
 }
 
+#add{
+	font-size: 24px;
+	font-weight: 550;
+	font-family: 'PT Serif', serif;
+}
+
 #entries{
 border-collapse: collapse;
 border-spacing: 0px;

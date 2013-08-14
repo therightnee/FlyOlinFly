@@ -10,6 +10,7 @@
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css')}}">
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='jquery.timepicker.css')}}">
 <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet' type='text/css'>
 </head>
 <body>
 
@@ -157,7 +158,7 @@ function responsive() {
 		$(".phonenum").show()
 		$(".flightdesc").show()
 		$(".email").show()
-		$(".add").remove()
+		$("#add").remove()
 		$("#datepicker").attr("type", "text")
 		$("#timepicker").attr("type", "text")
 	}
@@ -175,7 +176,7 @@ function responsive() {
 		$("#datepicker").attr("type", "date")
 		$("#timepicker").attr("type", "time")
 		if ($("#add").length == 0) {
-			$("#list").prepend("<h1 id='add'>Tap an entry to see details.</h1>")
+			$("#list").prepend("<span id='add'>Tap an entry to see details.</span>")
 		}
 	}
 }
