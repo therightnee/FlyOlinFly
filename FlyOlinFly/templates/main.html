@@ -140,12 +140,6 @@ function responsive() {
 		//$("#datepicker").attr("type", "text")
 		//$("#timepicker").attr("type", "text")
 		
-		$("#datepicker").datepicker();
-		$('#timepicker').timepicker({ 
-			'timeFormat': 'h:i A',
-		    'scrollDefaultNow': true,
-		    'step': 15
-			});
 		$(".link").click(function(){
 			$(".drawer").hide()
 			$(".extend").hide()
@@ -208,6 +202,12 @@ window.location.hash= "{{user}}"
 $("#entry").hide()
 $(".flash").delay('5000').fadeOut('200')
 responsive()
+$("#datepicker").datepicker();
+$('#timepicker').timepicker({ 
+	'timeFormat': 'h:i A',
+    'scrollDefaultNow': true,
+    'step': 15
+	});
 });
 </script>
 {% endif %}
