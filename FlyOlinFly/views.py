@@ -78,8 +78,8 @@ def add_newentry():
 		phonenum = request.form['phonenum']
 		email = request.form['email']
 		flightdesc = request.form['flightdesc']
-		date = request.form['date']
-		time = request.form['time']
+		date = request.form['datepicker']
+		time = request.form['timepicker']
 
 		###WARNING: USERS MUST NOT ADD ENTRIES FOR ANYONE BUT THEMSELVES
 		#this is not an ideal solution, and when I can get PUT access

@@ -45,7 +45,7 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://flyolinf
 		<a class="button" href="/close">Logout</a>
 		<a class="button" id="modent" href="javascript:void(0)" >Add or Modify Entry</a>
 	</div>
-	 <form name="mainform" action="{{ url_for('add_newentry') }}" method=post>
+	 <form name="mainform" onsubmit="return validate()" action="{{ url_for('add_newentry') }}" method=post>
 	<fieldset id="entry">
 		<legend>Arrival Details</legend>
 		<em>All fields are required</em>
