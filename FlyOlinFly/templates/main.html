@@ -45,7 +45,7 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://flyolinf
 		<a class="button" href="/close">Logout</a>
 		<a class="button" id="modent" href="javascript:void(0)" >Add or Modify Entry</a>
 	</div>
-	 <form name="mainform" onsubmit="return validate()" action="{{ url_for('add_newentry') }}" method=post>
+	 <form name="mainform" action="{{ url_for('add_newentry') }}" method=post>
 	<fieldset id="entry">
 		<legend>Arrival Details</legend>
 		<em>All fields are required</em>
@@ -122,7 +122,7 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://flyolinf
 	</div>
 <script type="text/javascript" >
 
-function validate() {
+$('#mainform').submit(function() {
 	var num=document.forms["mainform"]["phonenum"].value;
 	if (num.length == 10){
 	  num_array = num.split()
@@ -130,14 +130,14 @@ function validate() {
 	  num_fix2 = num.splice(7,0,"-")
 	  $('input[name="phonenum"]').val(num_fix2); 
 	  $("#list").prepend(num_fix2)
-	  return true;
+	  return false
 	  }
 	else{
 		$("#phonenumlabel").css("color", "red")
 		$("#list").prepend("<span id='add'>Please check your phone number.</span>")
-		return false;
+		return false
 	}
-}
+});
 
 
 $(window).resize(responsive)
