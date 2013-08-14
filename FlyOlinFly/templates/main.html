@@ -60,7 +60,7 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://flyolinf
 			</li>
 			<li>
 				<label id="phonenumlabel">Phone Number</label> 
-				{{ input('phonenum', 'XXX-XXX-XXXX', 'tel') }} <br />
+				{{ input('phonenum', 'XXX-XXX-XXXX', 'number') }} <br />
 			</li>
 			<li>
 				<label id="emaillable">E-mail</label> 
@@ -76,7 +76,7 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://flyolinf
 			</li>
 			<li>
 				<label id="timelabel">Time</label> 
-				{{ input('timepicker', 'HH:MMam/pm', 'text') }} <br />
+				{{ input('timepicker', 'HH:MM AM/PM', 'text') }} <br />
 			</li>
 		</ol>
 	<input type="submit" value="Submit">
@@ -121,6 +121,9 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://flyolinf
 		</div>
 	</div>
 <script type="text/javascript" >
+
+
+
 $(window).resize(responsive)
 
 function responsive() {
@@ -141,6 +144,9 @@ function responsive() {
 		    'scrollDefaultNow': true,
 		    'step': 15
 			});
+		$(".link").click(function(event){
+			event.stopPropagation();
+			}); 
 	}
 
 	else {
@@ -153,9 +159,6 @@ function responsive() {
 		$(".link").css("cursor", "pointer")
 		$(".link").click(drawer)
 		$(".link").bind("tapone", drawer)
-		$("#phonenum").attr("type", "text")	
-		$("#datepicker").attr("type", "date")
-		$("#timepicker").attr("type", "time")
 		if ($("#add").length == 0) {
 			$("#list").prepend("<span id='add'>Tap an entry to see details.</span>")
 		}
