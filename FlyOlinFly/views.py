@@ -174,7 +174,7 @@ def add_newentry():
 			elif len(fix) == 2:
 				fixthis = fix[0] + " and " + fix[1]
 				flash('Your form has failed to validate. Please check that your ' + fixthis + ' are both correct.')
-			elif:
+			elif len(fix) == 1:
 				fixthis = fix[0]
 				flash('Your form has failed to validate. Please check that your ' + fixthis + ' is correct.')
 				flash(phonenum)
