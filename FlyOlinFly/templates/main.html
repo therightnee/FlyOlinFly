@@ -193,7 +193,7 @@ $(".extend").click(close);
 	
 $(document).ready(function() {
 window.location.hash= "{{user}}"
-$("#{{user}}").removeAttr('class').addClass("link").css("background-color", "#f38630")
+$("#{{user}}").attr('class', 'link').css("background-color", "#f38630")
 $("#entry").hide()
 $(".flash").delay('5000').fadeOut('200')
 responsive()
