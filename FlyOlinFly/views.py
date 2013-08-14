@@ -117,7 +117,7 @@ def add_newentry():
 			
 		###parse the date and time data to fit a python datetime object###
 		try:
-			datetime1 = datetime.strptime(date + time, "%m/%d/%Y%I:%M%P")
+			datetime1 = datetime.strptime(date + " " + time, "%m/%d/%Y %I:%M%P")
 		except:
 			datetimecheck = 0
 			
