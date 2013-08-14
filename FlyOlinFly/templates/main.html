@@ -190,16 +190,10 @@ function close() {
 
 $(".extend").bind("tapone", close);
 $(".extend").click(close);
-
-$("#{{user}}").removeAttr('class').addClass("link").css("background-color", "#f38630")
-
-$("#modent").click(function(){
-	$("#entry").fadeIn('800')
-});
-
 	
 $(document).ready(function() {
 window.location.hash= "{{user}}"
+$("#{{user}}").removeAttr('class').addClass("link").css("background-color", "#f38630")
 $("#entry").hide()
 $(".flash").delay('5000').fadeOut('200')
 responsive()
