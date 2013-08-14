@@ -32,6 +32,10 @@ margin-left: 15px;
 margin: 20px 0px;
 }
 
+#add {
+	font-family: Georgia, serif;
+}
+
 .button {
 color: #000000;
 text-decoration: none;
@@ -82,12 +86,6 @@ color: #ffffff;
 
 #list{
 margin-top: 25px;
-}
-
-#add{
-	font-size: 24px;
-	font-weight: 550;
-	line-height: 3;
 }
 
 #entries{
