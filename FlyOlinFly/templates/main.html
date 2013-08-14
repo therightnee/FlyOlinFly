@@ -45,7 +45,7 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://flyolinf
 		<a class="button" href="/close">Logout</a>
 		<a class="button" id="modent" href="javascript:void(0)" >Add or Modify Entry</a>
 	</div>
-	 <form name="mainform" action="{{ url_for('add_newentry') }}" onsubmit="return validate()" method=post>
+	 <form name="mainform" action="{{ url_for('add_newentry') }}" method=post>
 	<fieldset id="entry">
 		<legend>Arrival Details</legend>
 		<em>All fields are required</em>
@@ -135,45 +135,37 @@ var time = document.forms["mainform"]["time"].value;
 //process the data
 var atpos=email.indexOf("@");
 var dotpos=email.lastIndexOf(".");
-var phonenum = phonenum.replace(/[^0-9]/g, '');
 
 //check to see if the fname is empty
 if (fname==null || fname=="") {
-  print = ("First name must be filled out");
   return false;
   }
 //check to see if the lname is empty
 else if (lname==null || lname=="") {
-  alert("Last name must be filled out");
   return false;
   }
 //check to see if the e-mail is valid
 else if (atpos<1 || dotpos<atpos+2 || dotpos+2>=email.length) {
-  alert("Not a valid e-mail address");
   return false;
   }
 //check to see if the phonenum is of the right length
-else if(phonenum.length != 10) { 
-  alert("not 10 digits");
+else if(phonenum.length != 13) { 
   return false
   } 
 //check to see if the flight description is not empty
 else if (flighdesc==null || flightdesc=="") {
-  alert("Flight Description must be filled out");
   return false;
   }
 //check to see if the date is not empty 
 //ideally should be replaced with a regex matcher but server side validation will 
 //check the format
 else if (date==null || date=="") {
-  alert("Date must be filled out");
   return false;
   }
 //check to see if the time is not empty 
 //ideally should be replaced with a regex matcher but server side validation will 
 //check the format
 else if (time==null || time=="") {
-  alert("Time must be filled out");
   return false;
   }
 
