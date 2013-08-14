@@ -60,7 +60,7 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://flyolinf
 			</li>
 			<li>
 				<label id="phonenumlabel">Phone Number</label> 
-				{{ input('phonenum', 'XXX-XXX-XXXX', 'tel') }} <br />
+				{{ input('phonenum', 'XXX-XXX-XXXX', 'text') }} <br />
 			</li>
 			<li> 	
 				<label id="emaillable">E-mail</label> 
@@ -134,9 +134,12 @@ function responsive() {
 		$(".flightdesc").show()
 		$(".email").show()
 		$("#add").remove()
-		$("#phonenum").attr("type", "tel")
+
+		//Currently form input types are not mature enough to be implemented
+		//$("#phonenum").attr("type", "tel")
 		//$("#datepicker").attr("type", "text")
 		//$("#timepicker").attr("type", "text")
+		
 		$("#datepicker").datepicker();
 		$('#timepicker').timepicker({ 
 			'timeFormat': 'h:i A',
@@ -156,12 +159,12 @@ function responsive() {
 		$(".flightdesc").hide()
 		$(".email").hide()
 		$("table td").css("width", "150")
-		$("#phonenum").attr("type", "number")
+		//$("#phonenum").attr("type", "number")
 		$(".link").css("cursor", "pointer")
 		$(".link").click(drawer)
 		$(".link").bind("tapone", drawer)
 		if ($("#add").length == 0) {
-			$("#list").prepend("<h1 id='add'>Tap an entry to see details.</h1>")
+			$("#list").prepend("<span id='add'>Tap an entry to see details.</span>")
 		}
 	}
 }
