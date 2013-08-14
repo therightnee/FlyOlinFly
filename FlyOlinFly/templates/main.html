@@ -187,22 +187,31 @@ function close() {
 	$(".extend").hide()
 	$("#extra").fadeOut('1200')
 };
-
-$(".extend").bind("tapone", close);
-$(".extend").click(close);
 	
 $(document).ready(function() {
+//Jump to the user
 window.location.hash= "{{user}}"
-$("#{{user}}").attr('class', 'link').css("background-color", "#f38630")
+$("#{{user}}").removeAttr('class').addClass("link").css("background-color", "#f38630")
 $("#entry").hide()
 $(".flash").delay('5000').fadeOut('200')
+//Activate the window resize code
 responsive()
+//Activate the date and time picker
 $("#datepicker").datepicker();
 $('#timepicker').timepicker({ 
 	'timeFormat': 'h:i A',
     'scrollDefaultNow': true,
     'step': 15
 	});
+//Close the drawere code
+$(".extend").bind("tapone", close);
+$(".extend").click(close);
+
+//Fade in the entry form
+$("#modent").click(function(){
+	$("#entry").fadeIn('800')
+});
+
 });
 </script>
 {% endif %}
