@@ -20,7 +20,7 @@
 	value="{{ value|e }}" size="{{ size }}" 
 	onblur="if(this.value == '') { this.style.color='#999999'; this.value='{{ value|e }}'}" 
 	onfocus="if (this.value == '{{ value|e }}') {this.style.color='#000000'; this.value=''}"
-	autocomplete="off"/>
+	autocomplete="off" autocorrect="off"/>
 	{%- endmacro %}
 
 {% if not session.logged_in %}
