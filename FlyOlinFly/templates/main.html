@@ -20,6 +20,7 @@
 	value="{{ value|e }}" size="{{ size }}" 
 	onblur="if(this.value == '') { this.style.color='#999999'; this.value='{{ value|e }}'}" 
 	onfocus="if (this.value == '{{ value|e }}') {this.style.color='#000000'; this.value=''}"
+	autocomplete="off"
 	{%- endmacro %}
 
 {% if not session.logged_in %}
@@ -156,9 +157,6 @@ function responsive() {
 		$(".email").hide()
 		$("table td").css("width", "150")
 		//$("#phonenum").attr("type", "number")
-		$("#fname").attr("autocomplete", "off")
-		$("#lname").attr("autocomplete", "off")
-		$("#flightlabel").attr("autocomplete", "off")
 		$(".link").css("cursor", "pointer")
 		$(".link").click(drawer)
 		$(".link").bind("tapone", drawer)
