@@ -81,6 +81,7 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://flyolinf
 			</li>
 		</ol>
 	<input type="submit" value="Submit">
+	<button type="reset" value="Reset">Reset</button>
 	</fieldset>
 	</form>
 	<div id="list">
@@ -155,6 +156,9 @@ function responsive() {
 		$(".email").hide()
 		$("table td").css("width", "150")
 		//$("#phonenum").attr("type", "number")
+		$("#fname").attr("autocomplete", "off")
+		$("#lname").attr("autocomplete", "off")
+		$("#flightlabel").attr("autocomplete", "off")
 		$(".link").css("cursor", "pointer")
 		$(".link").click(drawer)
 		$(".link").bind("tapone", drawer)
@@ -201,7 +205,7 @@ $("#datepicker").datepicker();
 $('#timepicker').timepicker({ 
 	'timeFormat': 'h:i A',
     'scrollDefaultNow': true,
-    'step': 15
+    'step': 5
 	});
 //Close the drawere code
 $(".extend").bind("tapone", close);
