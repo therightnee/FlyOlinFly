@@ -9,7 +9,7 @@ import requests
 
 @app.route('/')
 def auth():
-	return redirect('http://olinapps.com/external?callback=http://flyolinfly.herokuapp.com/authed')
+	return redirect('http://www.olinapps.com/external?callback=http://flyolinfly.herokuapp.com/authed')
 
 #Authentication - Inspried by TCR from OlinAppsDirectory
 
