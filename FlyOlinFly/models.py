@@ -19,8 +19,8 @@ class Entry(Base):
         
 	self.fname = fname
 	self.lname = lname
-    self.phonenum = phonenum
-	self.email = email
+        self.phonenum = phonenum
+    self.email = email
 	self.flightdesc = flightdesc
 	self.datetime = date
 	self.unique = unique
