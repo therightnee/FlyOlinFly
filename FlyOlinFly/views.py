@@ -113,7 +113,7 @@ def add_newentry():
 			emailcheck = 1
 		if flightdesc:
 			flightcheck = 1
-			
+		flash(" ".join([fname, lname, email, flightdesc, datetime1]))
 		###parse the date and time data to fit a python datetime object###
 		try:
 			datetime1 = datetime.strptime(date + " " + time, "%m/%d/%Y %I:%M %p")
