@@ -109,10 +109,6 @@ padding:5px;
 text-align: left;
 }
 
-.input{
-color: #999999;	
-}
-
 #entries tbody tr.odd td{
 background-color: #e0e4cc;
 }

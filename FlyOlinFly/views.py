@@ -101,23 +101,23 @@ def add_newentry():
 		#quick and dirty form validation
 		namecheck = 0
 		phonecheck = 0
-		emailcheck = 1
-		flightcheck = 1
-		datetimecheck = 1
-		esplit = email.split('@')
+		emailcheck = 0
+		flightcheck = 0
+		datetimecheck = 0
 		
 		if len(fname) != 0 and len(lname) != 0:
 			namecheck = 1
-		if len(phonenum) == 12 and phonenum.split('-')[0] != "XXX":
+		if len(phonenum) == 12:
 			phonecheck = 1
-		if esplit[1] == "onbreak.com" :
-			emailcheck = 0
-		if flightdesc == "Airline and Flight Number":
-			flightcheck = 0
+		if email:
+			emailcheck = 1
+		if flightdesc:
+			flightcheck = 1
 			
 		###parse the date and time data to fit a python datetime object###
 		try:
 			datetime1 = datetime.strptime(date + " " + time, "%m/%d/%Y %I:%M %p")
+			datetimecheck = 1
 		except:
 			datetimecheck = 0
 			
