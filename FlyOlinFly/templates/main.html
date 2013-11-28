@@ -17,7 +17,7 @@
 
 {% macro input(name, value='', type='text', size=20) -%}
 	<input class="input" id="{{ name }}" type="{{ type }}" name="{{ name }}" 
-	value="{{ value|e }}" size="{{ size }}" 
+	placeholder="{{ value|e }}" size="{{ size }}" 
 	onblur="if(this.value == '') { this.style.color='#999999'; this.value='{{ value|e }}'}" 
 	onfocus="if (this.value == '{{ value|e }}') {this.style.color='#000000'; this.value=''}"
 	autocomplete="off" autocorrect="off"/>
@@ -81,8 +81,9 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://flyolinf
 				{{ input('timepicker', 'HH:MM AM/PM', 'text') }} <br />
 			</li>
 		</ol>
-	<input type="submit" value="Submit">
-	<button type="reset" value="Reset">Reset</button>
+	<input class="button" type="submit" value="Submit">
+	<button class="button" type="reset" value="Reset"></button>
+	<button class="button" id="close_entry" href="javascript:void(0)" value="Close"></button>
 	</fieldset>
 	</form>
 	<div id="list">
@@ -127,6 +128,9 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://flyolinf
 
 $(window).resize(responsive)
 
+function close_entry() {
+}
+
 function responsive() {
 	winwidth =  document.documentElement.clientWidth
 
@@ -156,7 +160,7 @@ function responsive() {
 		$(".flightdesc").hide()
 		$(".email").hide()
 		$("table td").css("width", "150")
-		$("#phonenum").attr("type", "number")
+		$("#phonenumlabel").attr("type", "number")
 		$(".link").css("cursor", "pointer")
 		$(".link").click(drawer)
 		$(".link").bind("tapone", drawer)
@@ -212,6 +216,15 @@ $(".extend").click(close);
 //Fade in the entry form
 $("#modent").click(function(){
 	$("#entry").fadeIn('800')
+});
+
+
+//Close the entry form
+$("#close_entry").click(function(){
+	$("#entry").hide();
+});
+$("#close_entry").bind("tapone", function(){
+	$("#entry").hide();
 });
 
 });

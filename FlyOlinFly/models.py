@@ -11,17 +11,21 @@ class Entry(Base):
     flightdesc = Column(String(200), unique=False)
     datetime  = Column(DateTime(timezone=False))
     unique = Column(String(50), unique=True)
+    comment = Column(String(140), unique=False)
+   
 
     def __init__(self, fname=None, lname=None, phonenum=None, email=None,\
-	 flightdesc=None, date=None, unique=None):
+	 flightdesc=None, date=None, unique=None, comment=None):
         
 	self.fname = fname
 	self.lname = lname
-        self.phonenum = phonenum
+    self.phonenum = phonenum
 	self.email = email
 	self.flightdesc = flightdesc
 	self.datetime = date
 	self.unique = unique
+    self.comment = comment
+
 
     def __repr__(self):
         return '<Entry %r>' % (self.fname + self.lname)
