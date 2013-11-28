@@ -17,13 +17,13 @@ class Entry(Base):
     def __init__(self, fname=None, lname=None, phonenum=None, email=None,\
 	 flightdesc=None, date=None, unique=None):
         
-	    self.fname = fname
-	    self.lname = lname
+        self.fname = fname
+        self.lname = lname
         self.phonenum = phonenum
         self.email = email
-	    self.flightdesc = flightdesc
-	    self.datetime = date
-	    self.unique = unique
+        self.flightdesc = flightdesc
+        self.datetime = date
+        self.unique = unique
         #self.comment = comment
 
 
