@@ -41,7 +41,7 @@ def logout():
 	return redirect('/')
 	
 def unique_list(sessionid):
-	r2 = requests.get('http://directory.olinapps.com/api/people?sessionid=' + sessionid)
+	r2 = requests.get('http://wwww.olinapps.com/api/people?sessionid=' + sessionid)
 	if r2.status_code == 200:
 		raw = r2.json()
 		parsed = dict()
