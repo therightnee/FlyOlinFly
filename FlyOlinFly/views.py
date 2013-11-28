@@ -9,12 +9,12 @@ import requests
 
 @app.route('/')
 def auth():
-	return redirect('http://www.olinapps.com/external?callback=http://flyolinfly.herokuapp.com/authed')
+	return redirect('http://www.olinapps.com/external?callback=http://0.0.0.0:5000/authed')
 
 #Authentication - Inspried by TCR from OlinAppsDirectory
 
 def load_session(sessionid):
-	r = requests.get('http://olinapps.com/api/me?sessionid=' + sessionid)
+	r = requests.get('http://www.olinapps.com/api/me?sessionid=' + sessionid)
 	if r.status_code == 200:
 			session['sessionid'] = sessionid
 			session['userdata'] = r.json()
