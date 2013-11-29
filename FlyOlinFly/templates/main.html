@@ -18,7 +18,7 @@
 {% macro input(name, value='', type='text', size=20) -%}
 	<input class="input" id="{{ name }}" type="{{ type }}" name="{{ name }}" 
 	placeholder="{{ value|e }}" size="{{ size }}" 
-	autocomplete="off" autocorrect="off"/>
+	autocomplete="off" autocorrect="off" maxlength="140"/>
 	{%- endmacro %}
 
 {% if not session.logged_in %}
