@@ -112,6 +112,7 @@ margin-top: 25px;
 border-collapse: collapse;
 border-spacing: 0px;
 margin: auto;
+width: 100%;
 }
 
 #tabletitle th{
@@ -139,4 +140,25 @@ text-align: left;
 padding: 10px;
 background-color: #cccccc;
 border-radius: 10px;
+}
+
+.input {
+
+}
+
+.input-label {
+	margin-top: -2px;
+}
+
+#submission {
+	display: block;
+	margin-top: 50px;
+}
+
+.comment {
+	min-width: 400px;
+}
+
+.minx {
+	min-width: 100px;
 }

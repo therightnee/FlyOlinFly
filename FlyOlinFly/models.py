@@ -15,7 +15,7 @@ class Entry(Base):
    
 
     def __init__(self, fname=None, lname=None, phonenum=None, email=None,\
-	 flightdesc=None, date=None, unique=None):
+	 flightdesc=None, date=None, unique=None, comment=None):
         
         self.fname = fname
         self.lname = lname
