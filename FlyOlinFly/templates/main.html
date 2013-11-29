@@ -48,7 +48,9 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://0.0.0.0:
 	 <form name="mainform" action="{{ url_for('add_newentry') }}" method=post>
 	<fieldset id="entry">
 		<legend>Arrival Details</legend>
-		<em>All fields are required</em>
+		<em>All fields are required</em><br /><br />
+		<input type="radio" class="radio" name="sorter" value="offering">Offering Rides
+		<input type="radio" class="radio" name="sorter" value="seeking">Seeking Rides
 		<ol>
 			<li>
 				<label id="fnamelabel">First Name</label>
@@ -86,6 +88,31 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://0.0.0.0:
 	</form>
 	<div id="list">
 		{% if entries != None %}
+		<span class="title2">Offering Rides</span>
+		<table id="givers" border="0">
+			<thead>
+				<tr id="tabletitle">
+					<th class="name">Name</th>
+					<th class="phonenum">Phone</th>
+					<th class="email">Email</th>
+				</tr>	
+			</thead>
+			<tbody>
+				{% for entry in givers %}
+					{% if loop.index%2 == 0 %}
+					<tr id="{{entry.fname}}{{entry.lname}}" class="even link">
+					{% else %}
+					<tr id="{{entry.fname}}{{entry.lname}}" class="odd link">
+					{% endif %}
+						<td class="name">{{ entry.fname }} {{ entry.lname }}</td>
+						<td class="phonenum">{{ entry.phonenum }}</td>
+						<td class="email">{{ entry.email }}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<span class="title2">Seeking Rides</span>
 		<table id="entries" border="0">
 			<thead>
 				<tr id="tabletitle">

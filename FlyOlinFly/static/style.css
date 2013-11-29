@@ -26,6 +26,11 @@ font-size: 50px;
 margin-left: 15px;
 }
 
+.title2{
+font-family: 'Lobster', cursive;
+font-size: 25px;
+}
+
 #redirect{
 font-family: Georgia, serif;
 font-size: 34px;
@@ -61,6 +66,13 @@ color: #ffffff;
 
 .button a:visited {
 color: #ffffff;
+}
+
+#givers{
+border-collapse: collapse;
+border-spacing: 0px;
+margin: auto;
+margin-bottom: 50px;
 }
 
 #entry {
