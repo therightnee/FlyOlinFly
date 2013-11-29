@@ -113,13 +113,15 @@ def add_newentry():
 			emailcheck = 1
 		if flightdesc:
 			flightcheck = 1
-		print fname, lname, email, flightdesc, datetime, type(fname), type(lname), type(email), type(flightdesc), type(datetime)
 		###parse the date and time data to fit a python datetime object###
 		try:
 			datetime1 = datetime.strptime(date + " " + time, "%m/%d/%Y %I:%M %p")
 			datetimecheck = 1
 		except:
 			datetimecheck = 0
+			
+		print fname, lname, email, phonenum, flightdesc, datetime
+		print namecheck, phonecheck, emailcheck, flightcheck, datetimecheck
 			
 		sum = namecheck + phonecheck + emailcheck + flightcheck + datetimecheck
 		if sum == 5:
