@@ -89,8 +89,8 @@ def add_newentry():
 	if not session.get('logged_in'):
 			abort(401)
 	else:
-		fname = request.form['fname']
-		lname = request.form['lname']
+		fname = re.sub(r'\s*', '', request.form['fname'])
+		lname = re.sub(r'\s*', '', request.form['lname'])
 		_phonenum = ''.join(re.split('\D+', request.form['phonenum']))
 		phonenum = "-".join([_phonenum[:3], _phonenum[3:6], _phonenum[6:]])
 		email = request.form['email']
