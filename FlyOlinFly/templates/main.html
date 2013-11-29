@@ -101,12 +101,12 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://0.0.0.0:
 		<table id="entries" border="0">
 			<thead>
 				<tr id="tabletitle">
-					<th class="date">Date</th>
-					<th class="time">Time</th>
-					<th class="name">Name</th>
-					<th class="phonenum">Phone</th>
-					<th class="flightdesc">Flight</th>	
-					<th class="email">Email</th>
+					<th class="date minx">Date</th>
+					<th class="time minx">Time</th>
+					<th class="name minx">Name</th>
+					<th class="phonenum minx">Phone</th>
+					<th class="flightdesc minx">Flight</th>	
+					<th class="email minx">Email</th>
 					<th class="comment">Comment</th>
 				</tr>	
 			</thead>
@@ -117,12 +117,12 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://0.0.0.0:
 					{% else %}
 					<tr id="{{entry.fname}}{{entry.lname}}" class="odd link">
 					{% endif %}
-						<td class="date">{{ entry.date }}</td>
-						<td class="time">{{ entry.time }}</td>
-						<td class="name">{{ entry.fname }} {{ entry.lname }}</td>
-						<td class="phonenum">{{ entry.phonenum }}</td>
-						<td class="flightdesc">{{ entry.flightdesc }}</td>
-						<td class="email">{{ entry.email }}</td>
+						<td class="date minx">{{ entry.date }}</td>
+						<td class="time minx">{{ entry.time }}</td>
+						<td class="name minx">{{ entry.fname }} {{ entry.lname }}</td>
+						<td class="phonenum minx">{{ entry.phonenum }}</td>
+						<td class="flightdesc minx">{{ entry.flightdesc }}</td>
+						<td class="email minx">{{ entry.email }}</td>
 						<td class="comment">{{entry.comment}}</td>
 					</tr>
 					<tr class="drawer" id="{{entry.fname}}{{entry.lname}}drawer">
@@ -189,13 +189,15 @@ function drawer() {
 	$("#"+item+"extend").empty()
 	$("#"+item+"drawer").show()
 	$("#"+item+"extend").show()
-	phonenum = $("#" + item +" .phonenum").html()
-	flightdesc = $("#" +item +" .flightdesc").html()
+	phonenum = $("#" + item + " .phonenum").html()
+	flightdesc = $("#" + item + " .flightdesc").html()
+	comment = $("#" + item + " .comment").html()
 	email = $("#" + item + " .email").html()
 	$("#"+item+"extend").append(
 		"<div id='extra'><b>Phone Number:</b> " + phonenum +
 		"<br /> <b>Flight:</b> " + flightdesc + 
 		"<br /> <b>E-mail:</b> " + email + 
+		"<br /> <b>Comment:</b> " + comment +
 		"<br /><br /><b>Tap anywhere in this box to close or tap another entry.</b>" +
 		"</div>")
 };
