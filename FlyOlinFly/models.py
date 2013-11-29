@@ -11,7 +11,7 @@ class Entry(Base):
     flightdesc = Column(String(200), unique=False)
     datetime  = Column(DateTime(timezone=False))
     unique = Column(String(50), unique=True)
-    #comment = Column(String(140), unique=False)
+    comment = Column(String(140), unique=False)
    
 
     def __init__(self, fname=None, lname=None, phonenum=None, email=None,\
@@ -24,7 +24,7 @@ class Entry(Base):
         self.flightdesc = flightdesc
         self.datetime = date
         self.unique = unique
-        #self.comment = comment
+        self.comment = comment
 
 
     def __repr__(self):

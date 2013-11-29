@@ -8,6 +8,10 @@ min-width: 480px;
 margin: 10px;
 }
 
+a {
+	outline: none;
+}
+
 .flash{ 
 background: #CEE5F5; 
 padding: 0.5em;
@@ -48,6 +52,7 @@ background-color: #a7d8a0;
 font-family: Georgia, serif;
 font-weight: bold;
 font-size: 14px;
+border: none;
 }
 
 .button a{
