@@ -54,10 +54,9 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://0.0.0.0:
 	 <form name="mainform" action="{{ url_for('add_newentry') }}" method=post>
 	<fieldset id="entry">
 		<legend>Arrival Details</legend>
-		<em>All fields are required</em><br /><br />
+		<em>All fields except the comment field are required</em><br /><br />
 		<input type="radio" class="radio" name="sorter" value="offering">Offering Rides
 		<input type="radio" class="radio" name="sorter" value="seeking">Seeking Rides
-		<em>All fields except the comment field are required</em>
 		<ol>
 			<li>
 				<label id="fnamelabel" class="input-label">First Name</label>

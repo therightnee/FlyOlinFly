@@ -12,10 +12,11 @@ class Entry(Base):
     datetime  = Column(DateTime(timezone=False))
     unique = Column(String(50), unique=True)
     comment = Column(String(140), unique=False)
+    sorter = Column(Boolean, unique=False)
    
 
     def __init__(self, fname=None, lname=None, phonenum=None, email=None,\
-	 flightdesc=None, date=None, unique=None, comment=None):
+	 flightdesc=None, date=None, unique=None, comment=None, sorter=None):
         
         self.fname = fname
         self.lname = lname
@@ -25,6 +26,7 @@ class Entry(Base):
         self.datetime = date
         self.unique = unique
         self.comment = comment
+        self.sorter = sorter
 
 
     def __repr__(self):
