@@ -21,6 +21,12 @@
 	autocomplete="off" autocorrect="off"/>
 	{%- endmacro %}
 
+{% macro textarea(name, value='', type='text', size=20) -%}
+	<textarea class="input comment" id="{{ name }}" type="{{ type }}" name="{{ name }}" 
+	placeholder="{{ value|e }}" size="{{ size }}" 
+	autocomplete="off" autocorrect="off" rows="3" style="resize: none; width: 145px; margin-left: 2px; margin-bottom: -35px;"></textarea>
+	{%- endmacro %}
+
 {% if not session.logged_in %}
 
 <span id="redirect"> 
@@ -48,40 +54,46 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://0.0.0.0:
 	 <form name="mainform" action="{{ url_for('add_newentry') }}" method=post>
 	<fieldset id="entry">
 		<legend>Arrival Details</legend>
-		<em>All fields are required</em>
+		<em>All fields except the comment field are required</em>
 		<ol>
 			<li>
-				<label id="fnamelabel">First Name</label>
+				<label id="fnamelabel" class="input-label">First Name</label>
 				{{ input('fname', 'Frank') }}<br />
 			</li>
 			<li>
-				<label id="lnamelabel">Last Name</label> 
+				<label id="lnamelabel" class="input-label">Last Name</label> 
 				{{ input('lname', 'Olin') }} <br />	
 			</li>
 			<li>
-				<label id="phonenumlabel">Phone Number</label> 
+				<label id="phonenumlabel" class="input-label">Phone Number</label> 
 				{{ input('phonenum', 'XXX-XXX-XXXX', 'text') }} <br />
 			</li>
 			<li> 	
-				<label id="emaillable">E-mail</label> 
+				<label id="emaillable" class="input-label">E-mail</label> 
 				{{ input('email', 'whatyoucheck@onbreak.com', 'email') }} <br />
 			</li>
 			<li>
-				<label id="flightlabel">Flight</label> 
+				<label id="flightlabel" class="input-label">Flight</label> 
 				{{ input('flightdesc', 'Airline and Flight Number') }} <br />
 			</li>
 			<li>				
-				<label id="datelabel">Date</label> 
+				<label id="datelabel" class="input-label">Date</label> 
 				{{ input('datepicker', 'MM/DD/YYYY', 'text') }} <br />			
 			</li>
 			<li>
-				<label id="timelabel">Time</label> 
+				<label id="timelabel" class="input-label">Time</label> 
 				{{ input('timepicker', 'HH:MM AM/PM', 'text') }} <br />
 			</li>
+			<li>
+				<label id="comment" class="input-label">Comment</label> 
+				{{ textarea('comment', '140 chars or fewer, please', 'text') }} <br />
+			</li>
 		</ol>
-	<input class="button" type="submit" value="Submit">
-	<button class="button" type="reset" value="Reset">Reset</button>
-	<button class="button" type="reset" id="close_entry">Close</button>
+	<div id="submission">
+		<input class="button" type="submit" value="Submit">
+		<button class="button" type="reset" value="Reset">Reset</button>
+		<button class="button" type="reset" id="close_entry">Close</button>
+	</div>
 	</fieldset>
 	</form>
 	<div id="list">
@@ -95,6 +107,7 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://0.0.0.0:
 					<th class="phonenum">Phone</th>
 					<th class="flightdesc">Flight</th>	
 					<th class="email">Email</th>
+					<th class="comment">Comment</th>
 				</tr>	
 			</thead>
 			<tbody>
@@ -110,6 +123,7 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://0.0.0.0:
 						<td class="phonenum">{{ entry.phonenum }}</td>
 						<td class="flightdesc">{{ entry.flightdesc }}</td>
 						<td class="email">{{ entry.email }}</td>
+						<td class="comment">{{entry.comment}}</td>
 					</tr>
 					<tr class="drawer" id="{{entry.fname}}{{entry.lname}}drawer">
 					<td class="extend" id="{{entry.fname}}{{entry.lname}}extend" colspan="3"></td>
