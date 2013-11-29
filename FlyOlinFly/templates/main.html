@@ -49,8 +49,8 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://0.0.0.0:
 	<fieldset id="entry">
 		<legend>Arrival Details</legend>
 		<em>All fields except the comment field are required</em><br /><br />
-		<input type="radio" class="radio" name="sorter" value="offering">Offering Rides
-		<input type="radio" class="radio" name="sorter" value="seeking">Seeking Rides
+		<input id="sorter" type="radio" class="radio" name="sorter" value="offering">Offering Rides
+		<input id="sorter" type="radio" class="radio" name="sorter" value="seeking">Seeking Rides
 		<ol>
 			<li>
 				<label id="fnamelabel" class="input-label">First Name</label>
@@ -101,6 +101,7 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://0.0.0.0:
 					<th class="name">Name</th>
 					<th class="phonenum">Phone</th>
 					<th class="email">Email</th>
+					<th class="comment">Comment</th>
 				</tr>	
 			</thead>
 			<tbody>
@@ -113,6 +114,7 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://0.0.0.0:
 						<td class="name">{{ entry.fname }} {{ entry.lname }}</td>
 						<td class="phonenum">{{ entry.phonenum }}</td>
 						<td class="email">{{ entry.email }}</td>
+						<td class="comment">{{entry.comment}}</td>
 					</tr>
 				{% endfor %}
 			</tbody>

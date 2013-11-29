@@ -5,7 +5,7 @@ from sqlalchemy.exc import IntegrityError
 from flask import Flask, request, session, g, redirect, url_for, \
 	abort, render_template, flash 
 from datetime import datetime
-import requests
+import requests, re
 
 @app.route('/')
 def auth():
@@ -63,12 +63,26 @@ def content():
 		#unique_list(sessionid)
 		#parsed = session.get('idDB')
 		flash("Welcome to FlyOlinFly" + ", " + name[0].title())
-	cur = db_session.execute('select fname, lname, phonenum, email, flightdesc, datetime, comment from entry order by datetime')
+	cur = db_session.execute('select fname, lname, phonenum, email, flightdesc, datetime, comment, sorter from entry order by datetime')
+	giver_rows = []
+	entries_rows = []
+
+	for row in cur.fetchall():
+		if row[7] == "offering":
+			giver_rows.append(row)
+			print(row[7])
+		else:
+			entries_rows.append(row)
+			print(row[7])
+
+	givers = [dict(fname=row[0], lname=row[1], phonenum=row[2],
+				email=row[3], comment=row[6]) for row in giver_rows]
+
 	entries = [dict(fname=row[0], lname=row[1], phonenum=row[2],
-					   email=row[3], flightdesc=row[4], date=datetime.strftime(row[5], "%m/%d/%Y"),
-					   time=datetime.strftime(row[5], "%I:%M %p"), comment=row[6]) for row in cur.fetchall()]
+				email=row[3], flightdesc=row[4], date=datetime.strftime(row[5], "%m/%d/%Y"),
+				time=datetime.strftime(row[5], "%I:%M %p"), comment=row[6]) for row in entries_rows]
 	username = name[0].title() + name[1].title()
-	return render_template('main.html', entries=entries, user=username)
+	return render_template('main.html', givers=givers, entries=entries, user=username)
 	
 @app.route('/add', methods=['POST'])
 def add_newentry():
@@ -83,6 +97,7 @@ def add_newentry():
 		date = request.form['datepicker']
 		time = request.form['timepicker']
 		comment = request.form['comment']
+		sorter = request.form['sorter']
 
 		###WARNING: USERS MUST NOT ADD ENTRIES FOR ANYONE BUT THEMSELVES
 		#this is not an ideal solution, and when I can get PUT access
@@ -134,7 +149,7 @@ def add_newentry():
 			#checkexist = None
 			if checkexist == None:
 				try:
-					newentry= Entry(fname, lname, phonenum, email, flightdesc, datetime1, unique, comment)
+					newentry= Entry(fname, lname, phonenum, email, flightdesc, datetime1, unique, comment, sorter)
 					db_session.add(newentry)
 					db_session.commit()		
 					flash('You have added an entry')
@@ -150,6 +165,7 @@ def add_newentry():
 				checkexist.flightdesc = flightdesc
 				checkexist.datetime = datetime1
 				checkexist.comment = comment
+				checkexist.sorter = sorter
 				db_session.add(checkexist)
 				db_session.commit()	
 				flash('You have modified your entry')

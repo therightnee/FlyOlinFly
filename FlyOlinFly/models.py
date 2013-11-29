@@ -12,7 +12,7 @@ class Entry(Base):
     datetime  = Column(DateTime(timezone=False))
     unique = Column(String(50), unique=True)
     comment = Column(String(140), unique=False)
-    sorter = Column(Boolean, unique=False)
+    sorter = Column(String(15), unique=False)
    
 
     def __init__(self, fname=None, lname=None, phonenum=None, email=None,\
