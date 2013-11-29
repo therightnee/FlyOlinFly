@@ -119,7 +119,7 @@ def add_newentry():
 			datetimecheck = 1
 		except:
 			datetimecheck = 0
-			
+
 		print fname, lname, email, phonenum, flightdesc, datetime
 		print namecheck, phonecheck, emailcheck, flightcheck, datetimecheck
 			
@@ -173,6 +173,7 @@ def add_newentry():
 						fixthis = fixthis + " and " + i
 					else:
 						fixthis = fixthis + " " + i + ","
+				flash('Your form has failed to validate. Please check that your ' + fixthis + ' are all correct.')
 			elif len(fix) == 2:
 				fixthis = fix[0] + " and " + fix[1]
 				flash('Your form has failed to validate. Please check that your ' + fixthis + ' are both correct.')
@@ -180,6 +181,4 @@ def add_newentry():
 				fixthis = fix[0]
 				flash('Your form has failed to validate. Please check that your ' + fixthis + ' is correct.')
 				flash(phonenum)
-			else:
-				flash('Your form has failed to validate. Please check that your ' + fixthis + ' are all correct.')
 			return redirect(url_for('content'))
