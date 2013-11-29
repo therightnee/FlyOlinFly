@@ -125,6 +125,7 @@ def add_newentry():
 			
 		sum = namecheck + phonecheck + emailcheck + flightcheck + datetimecheck
 		if sum == 5:
+			session['valid'] = True
 			checkexist = Entry.query.filter_by(unique=user['id']).first()
 			#checkexist = None
 			if checkexist == None:
@@ -152,6 +153,7 @@ def add_newentry():
 			return redirect(url_for('content'))
 			
 		else:
+			session['valid'] = False
 			fix = list()
 			fixthis = str()
 			

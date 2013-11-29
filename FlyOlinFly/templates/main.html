@@ -194,7 +194,9 @@ function close() {
 	
 $(document).ready(function() {
 //Jump to the user
-window.location.hash= "{{user}}"
+{% if session.valid %}
+	window.location.hash= "{{user}}"
+{% endif %}
 $("#{{user}}").removeAttr('class').addClass("link").css("background-color", "#f38630")
 $("#entry").hide()
 $(".flash").delay('5000').fadeOut('200')
