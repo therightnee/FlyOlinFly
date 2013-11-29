@@ -1,0 +1,3 @@
+
+(sublime:4577): GLib-CRITICAL **: g_main_loop_quit: assertion `g_atomic_int_get (&loop->ref_count) > 0' failed
+g_dbus_connection_real_closed: Remote peer vanished with error: Underlying GIOStream returned 0 bytes on an async read (g-io-error-quark, 0). Exiting.

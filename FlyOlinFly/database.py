@@ -6,7 +6,7 @@ import os
 try:
 	postgresurl = os.environ['DATABASE_URL']
 except:
-	postgresurl = 'postgresql://postgres:love12@localhost/test'
+	postgresurl = 'postgresql://postgres:testing@localhost/postgres'
 engine = create_engine(postgresurl, convert_unicode=True)
 db_session = scoped_session(sessionmaker(autocommit=False,
                                          autoflush=False,

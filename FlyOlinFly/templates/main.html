@@ -33,7 +33,7 @@ Redirecting to OlinApps...
 
 <script type="text/javascript">
 $(document).ready(function() {
-setTimeout("location.href='http://olinapps.com/external?callback=http://flyolinfly.herokuapp.com/authed'", 5000);
+setTimeout("location.href='http://olinapps.com/external?callback=http://0.0.0.0:5000/authed'", 5000);
 });
 </script>
 	
@@ -83,7 +83,7 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://flyolinf
 		</ol>
 	<input class="button" type="submit" value="Submit">
 	<button class="button" type="reset" value="Reset">Reset</button>
-	<a class="button" id="close_entry" href="javascript:void(0)">Close</a>
+	<button class="button" type="reset" id="close_entry">Close</button>
 	</fieldset>
 	</form>
 	<div id="list">
