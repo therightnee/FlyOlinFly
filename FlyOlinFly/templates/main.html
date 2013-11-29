@@ -21,12 +21,6 @@
 	autocomplete="off" autocorrect="off"/>
 	{%- endmacro %}
 
-{% macro textarea(name, value='', type='text', size=20) -%}
-	<textarea class="input comment" id="{{ name }}" type="{{ type }}" name="{{ name }}" 
-	placeholder="{{ value|e }}" size="{{ size }}" 
-	autocomplete="off" autocorrect="off" rows="3" style="resize: none; width: 145px; margin-left: 2px; margin-bottom: -35px;"></textarea>
-	{%- endmacro %}
-
 {% if not session.logged_in %}
 
 <span id="redirect"> 
@@ -89,7 +83,7 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://0.0.0.0:
 			</li>
 			<li>
 				<label id="comment" class="input-label">Comment</label> 
-				{{ textarea('comment', '140 chars or fewer, please', 'text') }} <br />
+				{{ input('comment', '140 chars max, please', 'text') }} <br />
 			</li>
 		</ol>
 	<div id="submission">
