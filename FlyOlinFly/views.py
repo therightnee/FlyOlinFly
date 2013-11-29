@@ -91,7 +91,8 @@ def add_newentry():
 	else:
 		fname = request.form['fname']
 		lname = request.form['lname']
-		phonenum = ''.join(re.split('\D+', request.form['phonenum']))
+		_phonenum = ''.join(re.split('\D+', request.form['phonenum']))
+		phonenum = "-".join([_phonenum[:3], _phonenum[3:6], _phonenum[6:]])
 		email = request.form['email']
 		flightdesc = request.form['flightdesc']
 		date = request.form['datepicker']
@@ -126,7 +127,7 @@ def add_newentry():
 		
 		if len(fname) != 0 and len(lname) != 0:
 			namecheck = 1
-		if len(phonenum) == 10:
+		if len(phonenum) == 12:
 			phonecheck = 1
 		if email:
 			emailcheck = 1
@@ -139,7 +140,7 @@ def add_newentry():
 		except:
 			datetimecheck = 0
 
-		if len(comment) > 140:
+		if len(comment) <= 140:
 			commentcheck = 1
 
 		sum = namecheck + phonecheck + emailcheck + flightcheck + datetimecheck
