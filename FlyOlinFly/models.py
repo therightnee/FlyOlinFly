@@ -11,7 +11,7 @@ class Entry(Base):
     flightdesc = Column(String(200), unique=False)
     datetime  = Column(DateTime(timezone=False))
     unique = Column(String(50), unique=True)
-    comment = Column(String(140), unique=False)
+    comment = Column(String(50), unique=False)
     sorter = Column(String(15), unique=False)
    
 

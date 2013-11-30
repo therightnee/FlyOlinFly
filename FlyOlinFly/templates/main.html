@@ -31,7 +31,7 @@ Redirecting to OlinApps...
 
 <script type="text/javascript">
 $(document).ready(function() {
-setTimeout("location.href='http://olinapps.com/external?callback=http://0.0.0.0:5000/authed'", 5000);
+setTimeout("location.href='http://olinapps.com/external?callback=http://flyolinfly.herokuapp.com/authed'", 5000);
 });
 </script>
 	
@@ -82,7 +82,7 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://0.0.0.0:
 			</li>
 			<li>
 				<label id="commentlabel" class="input-label">Comment</label> 
-				{{ input('comment', '140 chars max, please', 'text') }} <br />
+				{{ input('comment', '50 chars max, please', 'text') }} <br />
 			</li>
 		</ol>
 	<div id="submission">
@@ -98,10 +98,10 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://0.0.0.0:
 		<table id="givers" border="0">
 			<thead>
 				<tr id="tabletitle">
-					<th class="name">Name</th>
-					<th class="phonenum">Phone</th>
-					<th class="email">Email</th>
-					<th class="comment">Comment</th>
+					<th class="gname">Name</th>
+					<th class="gphonenum">Phone</th>
+					<th class="gemail">Email</th>
+					<th class="gcomment">Comment</th>
 				</tr>	
 			</thead>
 			<tbody>
@@ -111,10 +111,10 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://0.0.0.0:
 					{% else %}
 					<tr id="{{entry.fname}}{{entry.lname}}" class="odd link">
 					{% endif %}
-						<td class="name">{{ entry.fname }} {{ entry.lname }}</td>
-						<td class="phonenum">{{ entry.phonenum }}</td>
-						<td class="email">{{ entry.email }}</td>
-						<td class="comment">{{entry.comment}}</td>
+						<td class="gname">{{ entry.fname }} {{ entry.lname }}</td>
+						<td class="gphonenum">{{ entry.phonenum }}</td>
+						<td class="gemail">{{ entry.email }}</td>
+						<td class="gcomment">{{entry.comment}}</td>
 					</tr>
 				{% endfor %}
 			</tbody>
@@ -174,6 +174,7 @@ function responsive() {
 		$(".extend").hide()
 		$(".phonenum").show()
 		$(".flightdesc").show()
+		$(".comment").show()
 		$(".email").show()
 		$("#add").remove()
 
@@ -194,13 +195,14 @@ function responsive() {
 		$(".phonenum").hide()
 		$(".flightdesc").hide()
 		$(".email").hide()
+		$(".comment").hide()
 		$("table td").css("width", "150")
 		$("#phonenumlabel").attr("type", "number")
 		$(".link").css("cursor", "pointer")
 		$(".link").click(drawer)
 		$(".link").bind("tapone", drawer)
 		if ($("#add").length == 0) {
-			$("#list").prepend("<span id='add'>Tap an entry to see details.</span>")
+			$("#list").prepend("<span id='add'>Tap an entry to see details.</span><br/>")
 		}
 	}
 }
