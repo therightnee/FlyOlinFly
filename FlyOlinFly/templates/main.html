@@ -51,7 +51,7 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://0.0.0.0:
 		<em>All fields except the comment field are required</em><br /><br />
 		<input id="sorter" type="radio" class="radio" name="sorter" value="seeking" checked>Seeking Rides
 		<input id="sorter" type="radio" class="radio" name="sorter" value="offering">Offering Rides
-		<ol>
+		<ol id='inputlist'>
 			<li>
 				<label id="fnamelabel" class="input-label">First Name</label>
 				{{ input('fname', 'Frank') }}<br />
@@ -234,6 +234,9 @@ function close() {
 $(document).ready(function() {
 //Jump to the user
 // window.location.hash= "{{user}}"
+$("input[name=sorter]:radio").change(function() {
+	$('ol#inputlist li:nth-child(n+5):nth-child(-n+7)').toggle();
+})
 $("#{{user}}").removeAttr('class').addClass("link").css("background-color", "#f38630")
 $("#entry").hide()
 $(".flash").delay('5000').fadeOut('200')
