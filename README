@@ -3,3 +3,19 @@ FlyOlinFLy
 DISCLAIMER: DO NOT CREATE AN ENTRY FROM ANOTHER USER'S ACCOUNT. 
 
 This will break the edit function. 
+
+
+IMPROVEMENTS
+
+Auto-populate form - Madison 
+
+Change the input form based on offering or seeking - James
+
+Clientside validation - Steph
+
+
+KNOWN BUGS:
+
+Explore truncation on mobile Safari
+
+Check non-working JS instances
