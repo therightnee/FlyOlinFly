@@ -239,6 +239,21 @@ $(document).ready(function() {
 
 // window.location.hash= "{{user}}"
 
+$(window).scroll(function() {
+	var height = $(window).height();
+  var scroll = $(window).scrollTop();
+  if (scroll > height) {
+  	$('#arrow').show();
+  } else {
+  	$('#arrow').hide();
+  }
+});
+
+$('#arrow').click(function() {
+	$('html, body').animate({scrollTop: '0px'}, 'fast');
+})
+
+
 {% if exists %}
 window.location.hash= "{{user}}"
 var user_db = {{user_db|tojson|safe}};
