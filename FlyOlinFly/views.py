@@ -92,6 +92,7 @@ def content():
 							  'timepicker': datetime.strftime(user_db.datetime, "%I:%M %p"), 'comment': user_db.comment, 'sorter': user_db.sorter}
 	else:
 		exists = False
+		user_db = False
 
 	return render_template('main.html', givers=givers, entries=entries, user=username, exists=exists, user_db=user_db)
 	
