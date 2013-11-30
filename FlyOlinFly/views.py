@@ -87,11 +87,12 @@ def content():
 	user_db = Entry.query.filter_by(unique=user['id']).first()
 	if user_db:
 		exists = True
+		user_db = {'fname': user_db.fname, 'lname': user_db.lname, 'phonenum': user_db.phonenum, 'email': user_db.email,
+							 'flightdesc': user_db.flightdesc, 'datepicker': datetime.strftime(user_db.datetime, "%m/%d/%Y"),
+							  'timepicker': datetime.strftime(user_db.datetime, "%I:%M %p"), 'comment': user_db.comment, 'sorter': user_db.sorter}
 	else:
 		exists = False
-	user_db = {'fname': user_db.fname, 'lname': user_db.lname, 'phonenum': user_db.phonenum, 'email': user_db.email,
-						 'flightdesc': user_db.flightdesc, 'datepicker': datetime.strftime(user_db.datetime, "%m/%d/%Y"),
-						  'timepicker': datetime.strftime(user_db.datetime, "%I:%M %p"), 'comment': user_db.comment, 'sorter': user_db.sorter}
+
 	return render_template('main.html', givers=givers, entries=entries, user=username, exists=exists, user_db=user_db)
 	
 @app.route('/add', methods=['POST'])
