@@ -19,7 +19,7 @@
 	<input class="input" id="{{ name }}" type="{{ type }}" name="{{ name }}" 
 	placeholder="{{ value|e }}" size="{{ size }}" 
 	autocomplete="off" autocorrect="off" maxlength="140"/>
-	{%- endmacro %}
+{%- endmacro %}
 
 {% if not session.logged_in %}
 
@@ -49,8 +49,8 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://0.0.0.0:
 	<fieldset id="entry">
 		<legend>Arrival Details</legend>
 		<em>All fields except the comment field are required</em><br /><br />
-		<input id="sorter" type="radio" class="radio" name="sorter" value="seeking" checked>Seeking Rides
-		<input id="sorter" type="radio" class="radio" name="sorter" value="offering">Offering Rides
+		<input id="seeking" type="radio" class="radio" name="sorter" value="seeking" checked>Seeking Rides
+		<input id="offering" type="radio" class="radio" name="sorter" value="offering">Offering Rides
 		<ol id='inputlist'>
 			<li>
 				<label id="fnamelabel" class="input-label">First Name</label>
@@ -65,7 +65,7 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://0.0.0.0:
 				{{ input('phonenum', 'XXX-XXX-XXXX', 'text') }} <br />
 			</li>
 			<li> 	
-				<label id="emaillable" class="input-label">E-mail</label> 
+				<label id="emaillabel" class="input-label">E-mail</label> 
 				{{ input('email', 'whatyoucheck@onbreak.com', 'email') }} <br />
 			</li>
 			<li>
@@ -81,7 +81,7 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://0.0.0.0:
 				{{ input('timepicker', 'HH:MM AM/PM', 'text') }} <br />
 			</li>
 			<li>
-				<label id="comment" class="input-label">Comment</label> 
+				<label id="commentlabel" class="input-label">Comment</label> 
 				{{ input('comment', '140 chars max, please', 'text') }} <br />
 			</li>
 		</ol>
@@ -234,9 +234,25 @@ function close() {
 $(document).ready(function() {
 //Jump to the user
 // window.location.hash= "{{user}}"
+
+{% if exists %}
+var user_db = {{user_db|tojson|safe}};
+for (var key in user_db) {
+	if (key === 'sorter') {
+		$('#'+user_db[key]).prop('checked', true);
+		if (user_db['sorter'] == 'offering') {
+			$('ol#inputlist li:nth-child(n+5):nth-child(-n+7)').toggle();
+		}
+	}
+	console.log(key, user_db[key]);
+  $('#'+key).val(user_db[key]);
+}
+{% endif %}
+
 $("input[name=sorter]:radio").change(function() {
 	$('ol#inputlist li:nth-child(n+5):nth-child(-n+7)').toggle();
 })
+
 $("#{{user}}").removeAttr('class').addClass("link").css("background-color", "#f38630")
 $("#entry").hide()
 $(".flash").delay('5000').fadeOut('200')

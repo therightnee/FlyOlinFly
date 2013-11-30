@@ -6,6 +6,7 @@ from flask import Flask, request, session, g, redirect, url_for, \
 	abort, render_template, flash 
 from datetime import datetime
 import requests, re
+import json
 
 @app.route('/')
 def auth():
@@ -82,7 +83,16 @@ def content():
 				email=row[3], flightdesc=row[4], date=datetime.strftime(row[5], "%m/%d/%Y"),
 				time=datetime.strftime(row[5], "%I:%M %p"), comment=row[6]) for row in entries_rows]
 	username = name[0].title() + name[1].title()
-	return render_template('main.html', givers=givers, entries=entries, user=username)
+
+	user_db = Entry.query.filter_by(unique=user['id']).first()
+	if user_db:
+		exists = True
+	else:
+		exists = False
+	user_db = {'fname': user_db.fname, 'lname': user_db.lname, 'phonenum': user_db.phonenum, 'email': user_db.email,
+						 'flightdesc': user_db.flightdesc, 'datepicker': datetime.strftime(user_db.datetime, "%m/%d/%Y"),
+						  'timepicker': datetime.strftime(user_db.datetime, "%I:%M %p"), 'comment': user_db.comment, 'sorter': user_db.sorter}
+	return render_template('main.html', givers=givers, entries=entries, user=username, exists=exists, user_db=user_db)
 	
 @app.route('/add', methods=['POST'])
 def add_newentry():
