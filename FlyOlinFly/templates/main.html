@@ -36,6 +36,7 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://0.0.0.0:
 </script>
 	
 {% else %}
+<img id='arrow' src="{{ url_for('static', filename='up_arrow.png')}}">
 <div id="main">
 	<span class="title" >Fly Olin Fly</span>
 	{% for message in get_flashed_messages() %}
@@ -235,6 +236,20 @@ $(document).ready(function() {
 //Jump to the user
 
 // window.location.hash= "{{user}}"
+
+$(window).scroll(function() {
+	var height = $(window).height();
+  var scroll = $(window).scrollTop();
+  if (scroll > height) {
+  	$('#arrow').show();
+  } else {
+  	$('#arrow').hide();
+  }
+});
+
+$('#arrow').click(function() {
+	$('html, body').animate({scrollTop: '0px'}, 'fast');
+})
 
 {% if exists %}
 window.location.hash= "{{user}}"
