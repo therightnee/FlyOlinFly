@@ -233,9 +233,11 @@ function close() {
 	
 $(document).ready(function() {
 //Jump to the user
+
 // window.location.hash= "{{user}}"
 
 {% if exists %}
+window.location.hash= "{{user}}"
 var user_db = {{user_db|tojson|safe}};
 for (var key in user_db) {
 	if (key === 'sorter') {
