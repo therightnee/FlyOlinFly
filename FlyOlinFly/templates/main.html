@@ -37,6 +37,7 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://flyolinf
 	
 {% else %}
 <div id="main">
+	<img id='arrow' src="{{ url_for('static', filename='up_arrow.png')}}">
 	<span class="title" >Fly Olin Fly</span>
 	{% for message in get_flashed_messages() %}
 		<div class="flash">{{ message }} </div>
