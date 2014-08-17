@@ -139,10 +139,6 @@ def add_newentry():
 		datetimecheck = 0
 		commentcheck = 0
 
-		if sorter == "offering":
-			flightcheck = 1
-			datetimecheck = 1
-
 
 		if len(fname) != 0 and len(lname) != 0:
 			namecheck = 1
@@ -157,10 +153,14 @@ def add_newentry():
 			datetime1 = datetime.strptime(date + " " + time, "%m/%d/%Y %I:%M %p")
 			datetimecheck = 1
 		except:
-			datetimecheck = datetimecheck
+			datetimecheck = 0
 
 		if len(comment) <= 50:
 			commentcheck = 1
+
+		if sorter == "offering":
+			flightcheck = 1
+			datetimecheck = 1
 
 		sum = namecheck + phonecheck + emailcheck + flightcheck + datetimecheck
 		if sum == 5:
