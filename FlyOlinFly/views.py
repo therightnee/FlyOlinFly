@@ -161,7 +161,7 @@ def add_newentry():
 		if sorter == "offering":
 			flightcheck = 1
 			datetimecheck = 1
-			datetime1 = datetime.now("%m/%d/%Y %I:%M %p")
+			datetime1 = datetime.now()
 
 		sum = namecheck + phonecheck + emailcheck + flightcheck + datetimecheck
 		if sum == 5:
