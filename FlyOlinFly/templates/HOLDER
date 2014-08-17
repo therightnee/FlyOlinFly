@@ -1,0 +1,5 @@
+<!--<script type="text/javascript">
+$(document).ready(function() {
+setTimeout("location.href='http://olinapps.com/external?callback=http://flyolinfly.herokuapp.com/authed'", 5000);
+});
+</script>-->

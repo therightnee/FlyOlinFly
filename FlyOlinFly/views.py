@@ -111,6 +111,8 @@ def add_newentry():
 		time = request.form['timepicker']
 		comment = request.form['comment']
 		sorter = request.form['sorter']
+		print sorter
+
 
 		###WARNING: USERS MUST NOT ADD ENTRIES FOR ANYONE BUT THEMSELVES
 		#this is not an ideal solution, and when I can get PUT access
@@ -136,7 +138,12 @@ def add_newentry():
 		flightcheck = 0
 		datetimecheck = 0
 		commentcheck = 0
-		
+
+		if sorter == "offering":
+			flightcheck = 1
+			datetimecheck = 1
+
+
 		if len(fname) != 0 and len(lname) != 0:
 			namecheck = 1
 		if len(phonenum) == 12:
@@ -150,7 +157,7 @@ def add_newentry():
 			datetime1 = datetime.strptime(date + " " + time, "%m/%d/%Y %I:%M %p")
 			datetimecheck = 1
 		except:
-			datetimecheck = 0
+			datetimecheck = datetimecheck
 
 		if len(comment) <= 50:
 			commentcheck = 1

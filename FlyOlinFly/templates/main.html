@@ -28,13 +28,13 @@ Please authorize this app.</span><br />
 <span id="redirect">
 Redirecting to OlinApps...
 </span>
-
+	
 <script type="text/javascript">
 $(document).ready(function() {
 setTimeout("location.href='http://olinapps.com/external?callback=http://flyolinfly.herokuapp.com/authed'", 5000);
 });
 </script>
-	
+
 {% else %}
 <div id="main">
 	<img id='arrow' src="{{ url_for('static', filename='up_arrow.png')}}">
@@ -163,9 +163,6 @@ setTimeout("location.href='http://olinapps.com/external?callback=http://flyolinf
 <script type="text/javascript" >
 
 $(window).resize(responsive)
-
-function close_entry() {
-}
 
 function responsive() {
 	winwidth =  document.documentElement.clientWidth
