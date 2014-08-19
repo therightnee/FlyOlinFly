@@ -69,12 +69,14 @@ def content():
 	entries_rows = []
 
 	for row in cur.fetchall():
+		creation_arrival = row[5]
+		expiration = creation_arrival + timedelta(days = 30)
+		if datetime.now() > expiration:
+			print DELETE
 		if row[7] == "offering":
 			giver_rows.append(row)
 		else:
 			entries_rows.append(row)
-			testing = datetime.now()
-			print timedelta(row[5], testing)
 
 	givers = [dict(fname=row[0], lname=row[1], phonenum=row[2],
 				email=row[3], comment=row[6]) for row in giver_rows]
