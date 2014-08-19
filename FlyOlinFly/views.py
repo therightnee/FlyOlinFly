@@ -73,7 +73,8 @@ def content():
 			giver_rows.append(row)
 		else:
 			entries_rows.append(row)
-			print timedelta(row[5], datetime.now())
+			testing = datetime.now()
+			print timedelta(row[5], testing)
 
 	givers = [dict(fname=row[0], lname=row[1], phonenum=row[2],
 				email=row[3], comment=row[6]) for row in giver_rows]
