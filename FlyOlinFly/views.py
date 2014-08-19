@@ -64,17 +64,12 @@ def content():
 		#unique_list(sessionid)
 		#parsed = session.get('idDB')
 		flash("Welcome to FlyOlinFly" + ", " + name[0].title())
+	db_session.query(Entry).filter(datetime.now() > datetime + timedelta(days=30)).delete()
 	cur = db_session.execute('select fname, lname, phonenum, email, flightdesc, datetime, comment, sorter from entry order by datetime')
 	giver_rows = []
 	entries_rows = []
 
 	for row in cur.fetchall():
-		creation_arrival = row[5]
-		expiration = creation_arrival + timedelta(days = 30)
-		if datetime.now() > expiration:
-			#print datetime.strftime(row[5], "%m/%d/%Y")
-			db_session.delete(row)
-			db_session.commit()
 		if row[7] == "offering":
 			giver_rows.append(row)
 		else:
