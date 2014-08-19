@@ -71,10 +71,9 @@ def content():
 	for row in cur.fetchall():
 		if row[7] == "offering":
 			giver_rows.append(row)
-			print(row[7])
 		else:
 			entries_rows.append(row)
-			print(row[7])
+			print datetime.timedelta(row[5], datetime.now())
 
 	givers = [dict(fname=row[0], lname=row[1], phonenum=row[2],
 				email=row[3], comment=row[6]) for row in giver_rows]
@@ -82,6 +81,7 @@ def content():
 	entries = [dict(fname=row[0], lname=row[1], phonenum=row[2],
 				email=row[3], flightdesc=row[4], date=datetime.strftime(row[5], "%m/%d/%Y"),
 				time=datetime.strftime(row[5], "%I:%M %p"), comment=row[6]) for row in entries_rows]
+
 	username = name[0].title() + name[1].title()
 
 	user_db = Entry.query.filter_by(unique=user['id']).first()
@@ -111,7 +111,6 @@ def add_newentry():
 		time = request.form['timepicker']
 		comment = request.form['comment']
 		sorter = request.form['sorter']
-		print sorter
 
 
 		###WARNING: USERS MUST NOT ADD ENTRIES FOR ANYONE BUT THEMSELVES
