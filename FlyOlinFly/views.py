@@ -72,8 +72,7 @@ def content():
 		creation_arrival = row[5]
 		expiration = creation_arrival + timedelta(days = 30)
 		if datetime.now() > expiration:
-			db.session.delete(row)
-			db.session.commit()
+			print datetime.strftime(row[5], "%I:%M %p")
 		if row[7] == "offering":
 			giver_rows.append(row)
 		else:
