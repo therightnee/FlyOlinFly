@@ -4,7 +4,7 @@ from FlyOlinFly.database import init_db, db_session
 from sqlalchemy.exc import IntegrityError
 from flask import Flask, request, session, g, redirect, url_for, \
 	abort, render_template, flash 
-from datetime import datetime
+from datetime import datetime, timedelta
 import requests, re
 import json
 
@@ -73,7 +73,7 @@ def content():
 			giver_rows.append(row)
 		else:
 			entries_rows.append(row)
-			print datetime.timedelta(row[5], datetime.now())
+			print timedelta(row[5], datetime.now())
 
 	givers = [dict(fname=row[0], lname=row[1], phonenum=row[2],
 				email=row[3], comment=row[6]) for row in giver_rows]
