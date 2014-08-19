@@ -68,7 +68,8 @@ def content():
 	
 	#Delete all entries that are more than 30 days old
 	test = db_session.query(Entry).filter(datetime.now() > (Entry.datetime + timedelta(days=30))).all()
-	print test
+	db_session.delete(test)
+	db_session.commit()
 
 	giver_rows = []
 	entries_rows = []
