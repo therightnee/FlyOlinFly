@@ -67,7 +67,7 @@ def content():
 	cur = db_session.execute('select fname, lname, phonenum, email, flightdesc, datetime, comment, sorter from entry order by datetime')
 	
 	#Delete all entries that are more than 30 days old
-	print Entry.query.where(datetime.now() > Entry.datetime + timedelta(days=30))
+	print Entry.query.filter_by(datetime.now() > Entry.datetime + timedelta(days=30))
 
 	giver_rows = []
 	entries_rows = []
